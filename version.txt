@@ -1,0 +1,9 @@
+UID_AUTH Standard
+Version: 1.0
+Release date: 2025-11-11
+Status: Stable
+Namespace: AUTH
+Scope: Creative Works (audio, image, video, text)
+Format: JSON / JSON-LD
+Compatibility: AI Act, RGPD, JSON Schema, Schema.org
+Maintainer: AUTHENTICA (France)
