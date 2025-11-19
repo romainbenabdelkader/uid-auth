@@ -1,0 +1,26 @@
+{
+  "@context": "https://schema.authentica.org/ai-rights/v1",
+  "@type": "CreativeWork",
+
+  "uid_auth": "FR-2025-AUTH-000001",
+  "name": "Example Work",
+  "creator": "Anonymous",
+
+  "origin": "human",
+
+  "issued_at": "2025-11-11T00:40:07Z",
+  "issuer": {
+    "name": "AUTHENTICA",
+    "type": "IdentityAuthority"
+  },
+
+  "rights": {
+    "ai_training": "prohibited",
+    "tdm_opt_out": true
+  },
+
+  "hash": {
+    "algorithm": "sha256",
+    "value": "EXAMPLE-HASH"
+  }
+}
