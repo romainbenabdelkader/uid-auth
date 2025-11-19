@@ -1,0 +1,9 @@
+{
+  "uid_auth": "FR-2025-AUTH-000001",
+  "issued_at": "2025-11-11T00:40:07Z",
+  "issuer": "AUTHENTICA",
+  "hash": {
+    "algorithm": "sha256",
+    "value": "EXAMPLE-UID-AUTH-000001"
+  }
+}
