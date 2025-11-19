@@ -108,3 +108,14 @@ Ce standard est publié sous licence Apache 2.0, permettant :
 ⸻
 
 ✨ UID_AUTH est un standard souverain ouvert, conçu pour protéger la création humaine et assurer la traçabilité culturelle à l’ère de l’IA.
+
+
+
+
+
+
+UID_AUTH est une brique technique de conformité,
+
+mais ne garantit pas la conformité RGPD ou AI Act à lui seul.
+
+Il doit être intégré dans un système conforme.
