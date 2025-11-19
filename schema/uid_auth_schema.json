@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UID_AUTH Schema",
+  "description": "Schema for the AUTHENTICA UID_AUTH universal identifier.",
+  "type": "object",
+  "properties": {
+    "uid_auth": {
+      "type": "string",
+      "description": "Universal identifier for the creative work.",
+      "pattern": "^[A-Z]{2}-[0-9]{4}-AUTH-[A-Z0-9-]+$"
+    },
+    "issued_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp at which UID_AUTH was generated."
+    },
+    "issuer": {
+      "type": "string",
+      "description": "Authority that generated the UID_AUTH (ex: AUTHENTICA)."
+    },
+    "hash": {
+      "type": "object",
+      "description": "Proof-of-integrity cryptographic hash.",
+      "properties": {
+        "algorithm": {
+          "type": "string",
+          "enum": ["sha256"],
+          "description": "Hashing algorithm used."
+        },
+        "value": {
+          "type": "string",
+          "description": "Hexadecimal hash value."
+        }
+      },
+      "required": ["algorithm", "value"]
+    }
+  },
+  "required": ["uid_auth", "issued_at", "issuer", "hash"],
+  "additionalProperties": false
+}
