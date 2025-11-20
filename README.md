@@ -1,10 +1,12 @@
-📘 UID_AUTH — Universal Identity for Creative Works
+📘 UID_AUTH 
+Universal Identity for Creative Works
 
 Standard ouvert, souverain, compatible AI Act & RGPD
 
+
 Version 1.0 — Novembre 2025
 
-⸻
+
 
 🔹 1. Introduction
 
