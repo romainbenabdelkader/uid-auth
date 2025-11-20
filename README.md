@@ -84,7 +84,7 @@ Exemple :
 
 🔹 5. Compatibilité & Objectifs
 
-UID_AUTH est pensé pour :
+UID_AUTH est çoncu pour s'integrer naturellemnt avec :
 
 ✔ SACEM / ADAMI / SPEDIADAM / SCPP / SPPF / SCAM / SGDL/ SACD /PRS / GEMA /SIAE ETC...
 
