@@ -44,15 +44,16 @@ Le schéma complet est disponible ici :
 
 Exemple d’UID_AUTH :
 
-{
   "uid_auth": "FR-2025-AUTH-000001",
+  
   "issued_at": "2025-11-11T00:40:07Z",
+  
   "issuer": "AUTHENTICA",
-  "hash": {
+  
+  "hash": 
     "algorithm": "sha256",
+	
     "value": "EXAMPLE-UID-AUTH-000001"
-  }
-}
 
 🔹 4. Manifeste TRINITY Light (JSON-LD)
 
@@ -62,25 +63,28 @@ Le manifeste associé (machine-readable, compatible IA et DDEX) se trouve dans :
 
 Exemple :
 
-{
   "@type": "CreativeWork",
+  
   "uid_auth": "FR-2025-AUTH-000001",
+  
   "origin": "human",
-  "rights": {
+  
+  "rights": 
     "ai_training": "prohibited",
     "tdm_opt_out": true
-  },
-  "hash": {
+	
+  
+  "hash": 
     "algorithm": "sha256",
     "value": "EXAMPLE-HASH"
-  }
-}
+	
+
 
 🔹 5. Compatibilité & Objectifs
 
 UID_AUTH est pensé pour :
 
-✔ SACEM / ADAMI / PRS / GEMA
+✔ SACEM / ADAMI / SPEDIADAM / SCPP / SPPF / SCAM / SGDL/ SACD /PRS / GEMA /SIAE ETC...
 
 ✔ AI Act (transparence + traçabilité IA)
 
