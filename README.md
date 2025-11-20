@@ -63,7 +63,6 @@ Le manifeste associé (machine-readable, compatible IA et DDEX) se trouve dans :
 Exemple :
 
 {
-  "@context": "https://schema.authentica.org/ai-rights/v1",
   "@type": "CreativeWork",
   "uid_auth": "FR-2025-AUTH-000001",
   "origin": "human",
