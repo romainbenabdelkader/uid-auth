@@ -1,126 +1,118 @@
-📘 UID_AUTH 
-Universal Identity for Creative Works
+AI Origin Manifest Open Standard (v1.0)
 
-Standard ouvert, souverain, compatible AI Act & RGPD
+Machine-readable metadata model for human-origin proof, AI Act transparency, and TDM opt-out declarations.
 
+This repository defines an open, neutral, interoperable JSON manifest enabling:
+	•	Human-origin declaration
+	•	AI Act transparency compliance (Art. 52–54)
+	•	TDM (Text-and-Data Mining) opt-out
+	•	Sovereign unique identifier (UID_AUTH)
+	•	Integrity hashing (SHA-256)
+	•	Interoperability with CMOs (collecting societies), DSPs and AI systems
+	•	Non-personal rights attribution (GDPR-safe)
 
-Version 1.0 — Novembre 2025
+It is not tied to any platform and can be implemented by:
+	•	collecting societies (SACEM, STIM, GEMA, PRS, JASRAC…)
+	•	DSPs (Spotify, Apple, TikTok, Deezer…)
+	•	labels / publishers
+	•	archives / libraries / cultural institutions
+	•	AI models and dataset builders
 
-
-
-🔹 1. Introduction
-
-UID_AUTH est l’identifiant universel souverain développé par AUTHENTICA, conçu pour fournir :
-
-	•	une identité unique,
-
-	•	non ambiguë,
-
-	•	horodatée,
-
-	•	vérifiable,
-
-	•	indépendante des métadonnées,
-
-	•	conforme au RGPD et à l’AI Act.
-
-UID_AUTH donne à chaque œuvre (audio, image, vidéo, texte) une identité native, lisible par les systèmes juridiques, culturels et techniques.
+The manifest is deliberately simple, extensible, and adapted to the AI era.
 
 ⸻
 
-🔹 2. Structure d’un UID_AUTH
+🌍 Purpose of the standard
 
-Format général :
+The European AI Act requires:
+	•	clear disclosure of whether content is human or AI-generated
+	•	machine readable transparency metadata
+	•	mandatory opt-out for AI training (TDM)
+	•	traceability and verifiable origin
+	•	auditability for cultural institutions
 
-CC-YYYY-AUTH-XXXXX
+However, no cross-industry open format currently fulfils these requirements.
 
-Exemple :
+This standard provides a simple, sovereign, European-aligned metadata format.
 
-FR-2025-AUTH-000001
+📦 Manifest fields
 
-🔹 3. Spécification JSON
+Field Description
 
-Le schéma complet est disponible ici :
+uidAuth
+Sovereign unique identifier for the work (non-personal).
 
-➡️ /schema/uid_auth_schema.json
+origin
+"human", "ai", or "hybrid".
 
-Exemple d’UID_AUTH :
+tdmOptOut
+Prevents AI models from training on the work (AI Act).
 
-  "uid_auth": "FR-2025-AUTH-000001",
-  
-  "issued_at": "2025-11-11T00:40:07Z",
-  
-  "issuer": "AUTHENTICA",
-  
-  "hash": 
-    "algorithm": "sha256",
-	
-    "value": "EXAMPLE-UID-AUTH-000001"
+integrityHash
+SHA-256 hash of the source file at creation.
 
-🔹 4. Manifeste TRINITY Light (JSON-LD)
+createdAt
+ISO 8601 timestamp of first registration.
 
-Le manifeste associé (machine-readable, compatible IA et DDEX) se trouve dans :
+rightsSociety
+Collecting society (CMO) handling rights (optional).
 
-➡️ /examples/manifest_example.jsonld
+workCode
+Registered work identifier (ISWC or internal code).
 
-Exemple :
+version
+Manifest version.
 
+aiActPolicy
+Additional AI usage constraints.
+
+📄 Example manifest
+
+See file: manifest-example.json
+
+{
+  "@context": "https://schema.org",
   "@type": "CreativeWork",
-  
-  "uid_auth": "FR-2025-AUTH-000001",
-  
+  "version": "1.0",
+  "uidAuth": "AUTH-FR-2025-00001234",
   "origin": "human",
-  
-  "rights": 
-    "ai_training": "prohibited",
-    "tdm_opt_out": true
-	
-  
-  "hash": 
-    "algorithm": "sha256",
-    "value": "EXAMPLE-HASH"
-	
+  "tdmOptOut": true,
+  "integrityHash": "sha256:3b6f0e1a8c91c0b2d2bb5f0d9f674dbf1c3c0dd120f7e3fb5a88bc1d9aef2e01",
+  "createdAt": "2025-11-22T14:32:00Z",
+  "rightsSociety": "SACEM",
+  "workCode": "ISWC-T1234567890",
+  "aiActPolicy": {
+    "trainingAllowed": false,
+    "generationAllowed": false,
+    "disclosureRequired": true
+  }
+}
 
+🧩 Compatibility with AUTHENTICA
 
-🔹 5. Compatibilité & Objectifs
+AUTHENTICA provides:
+	•	UID_AUTH generation
+	•	integrity hashing
+	•	verification logic
+	•	origin certification
+	•	interoperability with collecting societies
 
-UID_AUTH est çoncu pour s'integrer naturellemnt avec :
-
-✔ SACEM / ADAMI / SPEDIADAM / SCPP / SPPF / SCAM / SGDL/ SACD /PRS / GEMA /SIAE ETC...
-
-✔ AI Act (transparence + traçabilité IA)
-
-✔ RGPD (aucune donnée personnelle)
-
-✔ Systèmes de gestion collective
-
-✔ Formats culturels (audio, vidéo, texte, image)
-
-✔ Standards JSON-LD / DDEX / W3C
+AUTHENTICA is an implementation reference, but the manifest
+remains open, neutral and free to use.
 
 ⸻
 
-🔹 6. Licence
+📜 License
 
-Ce standard est publié sous licence Apache 2.0, permettant :
-
-	•	usage libre
-
-	•	implémentations commerciales
-
-	•	interopérabilité ouverte
+This specification is available under a permissive open license,
+allowing any organization to adopt or extend it.
 
 ⸻
 
-✨ UID_AUTH est un standard souverain ouvert, conçu pour protéger la création humaine et assurer la traçabilité culturelle à l’ère de l’IA.
+🏛️ Versioning
+	•	v1.0 → core transparency fields, AI Act alignment, CMO compatibility
 
+	•	Future versions may extend provenance, signatures, cryptographic binding
 
+while maintaining backward compatibility.
 
-
-
-
-UID_AUTH est une brique technique de conformité,
-
-mais ne garantit pas la conformité RGPD ou AI Act à lui seul.
-
-Il doit être intégré dans un système conforme.
