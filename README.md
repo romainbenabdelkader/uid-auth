@@ -1,4 +1,20 @@
-UID_AUTH Open AI-Origin & Rights Manifest (JSON-LD Standard)
+Open Standard for Creative Works Traceability UID_AUTH
+
+A neutral, AI-Act–ready JSON-LD manifest for
+
+• human-origin declaration
+
+• integrity proof (SHA-256)
+
+• TDM opt-out
+
+• sovereign unique identifiers
+
+• interoperability with CMOs, DSPs and AI models.
+
+Designed for collecting societies, DSPs and regulators.
+
+
 
 Version 1.0  Open, Neutral, Interoperable
 
