@@ -1,40 +1,194 @@
 {
-  "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "UID_AUTH Schema",
-  "description": "Schema for the AUTHENTICA UID_AUTH universal identifier.",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "UID_AUTH AI Origin Manifest v1",
+  "description": "Open, AI Act–oriented manifest for creative works, identifying origin, rights and integrity.",
   "type": "object",
+
   "properties": {
+    "@context": {
+      "type": "string",
+      "const": "https://schema.authentica.org/ai-rights/v1",
+      "description": "JSON-LD context for the UID_AUTH AI rights manifest."
+    },
+
+    "@type": {
+      "type": "string",
+      "description": "Type of the described resource, typically 'CreativeWork' or a more specific subtype."
+    },
+
     "uid_auth": {
       "type": "string",
-      "description": "Universal identifier for the creative work.",
-      "pattern": "^[A-Z]{2}-[0-9]{4}-AUTH-[A-Z0-9-]+$"
+      "description": "Sovereign unique identifier for the work, issued by an identity authority (e.g. AUTHENTICA or a collecting society)."
     },
+
+    "name": {
+      "type": "string",
+      "description": "Human-readable title of the work."
+    },
+
+    "creator": {
+      "type": "string",
+      "description": "Name (or pseudonym) of the creator or main author."
+    },
+
+    "origin": {
+      "type": "string",
+      "enum": ["human", "ai", "hybrid", "unknown"],
+      "description": "Declared origin of the work: fully human, fully AI, hybrid, or unknown."
+    },
+
     "issued_at": {
       "type": "string",
       "format": "date-time",
-      "description": "Timestamp at which UID_AUTH was generated."
+      "description": "ISO 8601 timestamp indicating when the UID_AUTH manifest was issued."
     },
+
     "issuer": {
-      "type": "string",
-      "description": "Authority that generated the UID_AUTH (ex: AUTHENTICA)."
+      "type": "object",
+      "description": "Entity that issues and signs the UID_AUTH manifest.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Legal or operational name of the issuing authority."
+        },
+        "type": {
+          "type": "string",
+          "description": "Type of authority, e.g. 'IdentityAuthority', 'CollectingSociety', 'Label', etc."
+        },
+        "identifier": {
+          "type": "string",
+          "description": "Optional identifier for the issuer (e.g. IPI, ISNI, internal code…)."
+        }
+      },
+      "required": ["name"],
+      "additionalProperties": true
     },
+
+    "rights": {
+      "type": "object",
+      "description": "Rights and AI-related restrictions associated with the work.",
+      "properties": {
+        "ai_training": {
+          "type": "string",
+          "enum": ["prohibited", "allowed", "restricted"],
+          "description": "Policy regarding AI training on this work (in line with AI Act transparency and TDM rules)."
+        },
+        "tdm_opt_out": {
+          "type": "boolean",
+          "description": "True if the rightsholder opts out of text-and-data mining exceptions for this work."
+        },
+        "usage_terms": {
+          "type": "string",
+          "description": "Optional free-text description or URL pointing to detailed usage terms."
+        }
+      },
+      "additionalProperties": true
+    },
+
     "hash": {
       "type": "object",
-      "description": "Proof-of-integrity cryptographic hash.",
+      "description": "Cryptographic hash of the reference file or fingerprint used for integrity and evidentiary purposes.",
       "properties": {
         "algorithm": {
           "type": "string",
-          "enum": ["sha256"],
-          "description": "Hashing algorithm used."
+          "enum": ["sha256", "sha3-256", "blake3"],
+          "description": "Hash algorithm used. Default recommended: sha256."
         },
         "value": {
           "type": "string",
-          "description": "Hexadecimal hash value."
+          "description": "Hex-encoded digest of the file or fingerprint."
         }
       },
-      "required": ["algorithm", "value"]
+      "required": ["algorithm", "value"],
+      "additionalProperties": false
+    },
+
+    "work_codes": {
+      "type": "object",
+      "description": "Optional standard identifiers for the work.",
+      "properties": {
+        "isrc": {
+          "type": "string",
+          "description": "ISRC for sound recordings, when available."
+        },
+        "iswc": {
+          "type": "string",
+          "description": "ISWC for musical works, when available."
+        },
+        "ipi": {
+          "type": "string",
+          "description": "IPI or similar identifier for rightsholders."
+        },
+        "internal_id": {
+          "type": "string",
+          "description": "Internal catalogue or system identifier."
+        }
+      },
+      "additionalProperties": true
+    },
+
+    "collecting_society": {
+      "type": "object",
+      "description": "Optional information about the collecting society managing the work.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the collecting society (e.g. SACEM, STIM, GEMA…)."
+        },
+        "code": {
+          "type": "string",
+          "description": "Optional society code or internal identifier."
+        }
+      },
+      "additionalProperties": true
+    },
+
+    "label": {
+      "type": "object",
+      "description": "Optional label or publisher associated with the work.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Name of the label or publisher."
+        }
+      },
+      "additionalProperties": true
+    },
+
+    "dsp": {
+      "type": "array",
+      "description": "Optional list of DSPs where this manifest is intended to be consumed.",
+      "items": {
+        "type": "string",
+        "description": "DSP name (e.g. Spotify, YouTube, Deezer, Apple Music…)."
+      }
+    },
+
+    "ai_providers": {
+      "type": "array",
+      "description": "Optional list of AI providers expected to consume and respect this manifest.",
+      "items": {
+        "type": "string",
+        "description": "AI provider name (e.g. OpenAI, Google, Anthropic, Stability…)."
+      }
+    },
+
+    "version": {
+      "type": "string",
+      "description": "Manifest or schema version identifier, e.g. '1.0.0'."
     }
   },
-  "required": ["uid_auth", "issued_at", "issuer", "hash"],
-  "additionalProperties": false
+
+  "required": [
+    "@context",
+    "@type",
+    "uid_auth",
+    "origin",
+    "issued_at",
+    "issuer",
+    "rights",
+    "hash"
+  ],
+
+  "additionalProperties": true
 }
