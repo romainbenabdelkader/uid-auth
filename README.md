@@ -198,8 +198,8 @@ Labels & Éditeurs
 	
 	•	Believe
 
-Ces acteurs sont mentionnés uniquement à titre d’exemple d’intégration potentielle.  
-Aucun partenariat ou adoption n’est annoncé à ce stade.
+“Ces organisations sont citées uniquement comme exemples de systèmes susceptibles d’intégrer le manifeste UID_AUTH.
+Le standard est ouvert et ne présuppose aucun partenariat spécifique.”
 
 🌍 Pourquoi JSON-LD ?
 
