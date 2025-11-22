@@ -1,4 +1,4 @@
-# UID_AUTH – AI Origin & Rights Manifest (Open Standard, JSON-LD)
+# UID_AUTH  AI Origin & Rights Manifest (Open Standard, JSON-LD)
 
 UID_AUTH is an open, neutral, machine-readable standard that links any creative work  
 (audio, video, text, image…) to a verifiable origin, rights declaration, and AI Act transparency.
