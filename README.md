@@ -43,7 +43,8 @@ AUTHENTICA propose une implémentation de référence, mais le standard fonction
 
 Chaque fichier JSON-LD doit suivre cette structure : 
 {
-  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/context.jsonld",
+ "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/context/context.jsonld
+ 
   "@type": "CreativeWork",
 
   "uid_auth": "FR-2025-AUTH-000001",
