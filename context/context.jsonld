@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "uid_auth": "https://schema.authentica.org/uid_auth",
+    "name": "http://schema.org/name",
+    "creator": "http://schema.org/creator",
+    "origin": "https://schema.authentica.org/origin",
+    "issued_at": "http://schema.org/dateCreated",
+    "issuer": "https://schema.authentica.org/issuer",
+    "rights": "http://schema.authentica.org/rights",
+    "hash": "https://schema.authentica.org/hash"
+  }
+}
