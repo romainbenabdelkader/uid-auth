@@ -38,6 +38,36 @@ AUTHENTICA propose une implémentation de référence, mais le standard fonction
 	4.	Offrir un socle neutre que les sociétés de gestion collective peuvent intégrer immédiatement.
 	
 	5.	Permettre une interopérabilité mondiale sans dépendance à une infrastructure unique.
+	
+
+	### Gouvernance et unicité des UID_AUTH
+
+UID_AUTH n’est pas un identifiant “centralisé” émis par une base mondiale unique.
+
+Chaque identifiant est émis par une **Identity Authority** reconnue
+
+(société de gestion collective, autorité publique, ou opérateur délégué
+
+comme AUTHENTICA dans le cadre d’un pilote), dans **son propre espace de noms**.
+
+Exemples de formats possibles :
+
+- `FR-SACEM-2025-000000123`
+- `SE-STIM-2026-000045678`
+- `FR-AUTH-2025-TEST-000001`
+
+L’unicité globale est garantie par :
+
+1. Un préfixe d’autorité (`FR-SACEM`, `SE-STIM`, etc.) qui définit un namespace unique.
+
+3. Une politique interne à chaque autorité (compteur séquentiel ou UUID) qui évite toute réutilisation.
+
+À terme, un registre fédéré (par ex. sous l’égide d’une organisation internationale)
+
+pourrait agréger les blocs d’identifiants déclarés par chaque autorité,
+
+mais ce n’est **pas requis** pour l’adoption du standard ni pour sa conformité à l’AI Act.
+
 
 📦 Structure du Manifest
 
