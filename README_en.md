@@ -52,6 +52,34 @@ Every manifest must follow the structure:
     "value": "EXAMPLE-HASH"
   }
 }
+### Governance and Uniqueness of UID_AUTH Identifiers
+
+UID_AUTH is not a centralized global identifier managed by a single database.
+
+Each identifier is issued by a recognized **Identity Authority**
+
+(such as a collecting society, a public authority, or a delegated operator like AUTHENTICA during a pilot)
+
+within **its own namespace**, ensuring global uniqueness by design.
+
+Examples of valid formats:
+
+- `FR-SACEM-2025-000000123`
+- `SE-STIM-2026-000045678`
+- `FR-AUTH-2025-TEST-000001`
+
+Uniqueness is guaranteed through:
+
+1. A namespace prefix (`FR-SACEM`, `SE-STIM`, etc.), which makes each authority’s space distinct.
+
+2. An internal policy (sequential counters or UUIDs) that prevents reuse inside that namespace.
+
+In the future, a federated or optional public register (for example under an international organization)
+
+could aggregate namespaces declared by different authorities,
+
+but this is **not required** for adoption of the standard nor for AI Act compliance.
+
 
 🔒 Mandatory Fields
 Field	Description
