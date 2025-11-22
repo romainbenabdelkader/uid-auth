@@ -1,153 +1,197 @@
-AI Origin Manifest Open Standard (v1.0)
+UID_AUTH Open AI-Origin & Rights Manifest (JSON-LD Standard)
 
-Machine readable metadata model for human-origin proof, AI Act transparency, and TDM opt-out declarations.
+Version 1.0  Open, Neutral, Interoperable
 
-This repository defines an open, neutral, interoperable JSON manifest enabling:
+UID_AUTH est un standard ouvert pour déclarer l’origine, les droits et les restrictions d’usage d’une œuvre (audio, vidéo, image, 
 
-	•	Human-origin declaration
+texte) à l’ère de l’IA générative.
+
+Il fournit un manifest JSON-LD, lisible par les humains, les IA, les DSPs (Spotify/YouTube/Deezer) et les sociétés de gestion 
+
+collective (SACEM, STIM, GEMA, PRS, etc.).
+
+
+Ce manifest permet :
+
+	•	de déclarer l’origine humaine,
 	
-	•	AI Act transparency compliance (Art. 52–54)
+	•	de signaler les restrictions IA (AI Act),
 	
-	•	TDM (Text-and-Data Mining) opt-out
+	•	d’associer un identifiant souverain (UID_AUTH),
 	
-	•	Sovereign unique identifier (UID_AUTH)
+	•	de fournir une preuve d’intégrité (hash),
 	
-	•	Integrity hashing (SHA-256)
+	•	d’assurer l’interopérabilité avec les workflows existants (DDEX, ISWC, ISRC, etc.).
+
+Le standard est entièrement ouvert, gratuit, neutre toute organisation peut l’adopter dès maintenant.
+
+AUTHENTICA propose une implémentation de référence, mais le standard fonctionne indépendamment de toute technologie propriétaire.
+
+
+🎯 Objectifs
+	1.	Fournir un format universel pour déclarer l’origine des œuvres.
 	
-	•	Interoperability with CMOs (collecting societies), DSPs and AI systems
+	2.	Être AI Act Ready (articles 52, 53, 54 — transparence et TDM opt-out).
 	
-	•	Non-personal rights attribution (GDPR-safe)
-
-It is not tied to any platform and can be implemented by:
-
-	•	collecting societies (SACEM, STIM, GEMA, PRS, JASRAC…)
-
-	•	DSPs (Spotify, Apple, TikTok, Deezer…)
+	3.	Rendre les œuvres lisibles par les IA, les plateformes et les institutions.
 	
-	•	labels / publishers
+	4.	Offrir un socle neutre que les sociétés de gestion collective peuvent intégrer immédiatement.
 	
-	•	archives / libraries / cultural institutions
-	
-	•	AI models and dataset builders
+	5.	Permettre une interopérabilité mondiale sans dépendance à une infrastructure unique.
 
-The manifest is deliberately simple, extensible, and adapted to the AI era.
+📦 Structure du Manifest
 
-⸻
-
-🌍 Purpose of the standard
-
-The European AI Act requires:
-
-	•	clear disclosure of whether content is human or AI-generated
-	
-	•	machine readable transparency metadata
-	
-	•	mandatory opt-out for AI training (TDM)
-	
-	•	traceability and verifiable origin
-	
-	•	auditability for cultural institutions
-
-However, no cross-industry open format currently fulfils these requirements.
-
-This standard provides a simple, sovereign, European-aligned metadata format.
-
-📦 Manifest fields
-
-Field Description
-
-uidAuth
-Sovereign unique identifier for the work (non-personal).
-
-origin
-"human", "ai", or "hybrid".
-
-tdmOptOut
-Prevents AI models from training on the work (AI Act).
-
-integrityHash
-SHA-256 hash of the source file at creation.
-
-createdAt
-ISO 8601 timestamp of first registration.
-
-rightsSociety
-Collecting society (CMO) handling rights (optional).
-
-workCode
-Registered work identifier (ISWC or internal code).
-
-version
-Manifest version.
-
-aiActPolicy
-Additional AI usage constraints.
-
-📄 Example manifest
-
-See file: manifest-example.json
-
-  "@context": "https://schema.org",
-  
+Chaque fichier JSON-LD doit suivre cette structure : 
+{
+  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/context.jsonld",
   "@type": "CreativeWork",
-  
-  "version": "1.0",
-  
-  "uidAuth": "AUTH-FR-2025-00001234",
-  
+
+  "uid_auth": "FR-2025-AUTH-000001",
+  "name": "Example Work",
+  "creator": "Anonymous",
   "origin": "human",
-  
-  "tdmOptOut": true,
-  
-  "integrityHash": "sha256:3b6f0e1a8c91c0b2d2bb5f0d9f674dbf1c3c0dd120f7e3fb5a88bc1d9aef2e01",
-  
-  "createdAt": "2025-11-22T14:32:00Z",
-  
-  "rightsSociety": "SACEM",
-  
-  "workCode": "ISWC-T1234567890",
-  
-  "aiActPolicy": {
-  
-    "trainingAllowed": false,
+
+  "issued_at": "2025-11-11T00:40:07Z",
+  "issuer": {
+    "name": "AUTHENTICA",
+    "type": "IdentityAuthority"
+  },
+
+  "rights": {
+    "ai_training": "prohibited",
+    "tdm_opt_out": true
+  },
+
+  "hash": {
+    "algorithm": "sha256",
+    "value": "EXAMPLE-HASH"
+  }
+}
+
+🔒 Champs Obligatoires
+
+Champ	Description
+
+uid_auth	Identifiant souverain unique de l’œuvre
+
+origin	“human” ou “ai”
+
+issued_at	Date ISO 8601
+
+hash	Preuve d’intégrité du fichier
+
+rights.ai_training	Indique si l’œuvre peut être utilisée pour entraîner une IA
+
+rights.tdm_opt_out	Conformité TDM Directive EU
+
+
+✨ Extensions Optionnelles (v1.1)
+
+Pour les institutions ou workflows avancés :
+
+	•	provenance_chain (transformations successives)
 	
-    "generationAllowed": false,
+	•	signature (future cryptographic signing)`
+
+	•	work_code (ISWC, ISRC, UPC)
 	
-    "disclosureRequired": true
-  
-
-
-🧩 Compatibility with AUTHENTICA
-
-AUTHENTICA provides:
-
-	•	UID_AUTH generation
+	•	rightsSociety (SACEM, STIM, PRS…)
 	
-	•	integrity hashing
+	•	creator_id (pseudonymisé)
+
+Ces champs ne sont pas obligatoires mais déjà prévus pour l’AI Act long terme.
+
+
+📁 Dossiers du Référentiel
+
+uid-auth/
+├── README.md                 # Ce document
+├── context.jsonld            # @context officiel du standard
+├── schema.json               # JSON Schema (validation automatique)
+├── examples/
+│   └── manifest_example.jsonld
+└── LICENSE                   # Licence open source (MIT ou CC0)
+
+
+🧪 Exemple de Manifest Complet
+
+Voir
+
+👉 examples/manifest_example.jsonld
+
+
+🏛️ Interopérabilité et Adoptions Cibles
+
+UID_AUTH est conçu pour s’intégrer dans :
+
+Collecting Societies
+
+	•	SACEM
 	
-	•	verification logic
+	•	STIM
 	
-	•	origin certification
+	•	GEMA
 	
-	•	interoperability with collecting societies
+	•	PRS
+	
+	•	SIAE
+
+
+DSPs
+	•	Spotify
+	
+	•	YouTube
+	
+	•	TikTok
+	
+	•	Deezer
+
+
+AI Providers
+	•	OpenAI
+	
+	•	Google
+	
+	•	Anthropic
+	
+	•	Stability
+
+
+Labels & Éditeurs
+
+	•	Universal
+	
+	•	Warner
+	
+	•	Sony
+	
+	•	Believe
+
+
+🌍 Pourquoi JSON-LD ?
+
+Le JSON-LD :
+	•	est déjà utilisé par Google & Schema.org,
+	
+	•	est compatible IA Act,
+	
+	•	permet une validation automatique,
+	
+	•	crée une base pour un futur standard W3C.
+
+UID_AUTH s’inscrit donc dans une logique web-native.
+
+
+🤝 Licence & Contribution
+	•	Le standard est publié sous licence MIT (open, permissive).
+	
+	•	Les contributions sont les bienvenues.
+	
+	•	Les organisations peuvent proposer extensions, champs, versions…
 	
 
-AUTHENTICA is an implementation reference, but the manifest
-remains open, neutral and free to use.
+📬 Contact
 
-⸻
+Pour rejoindre le groupe de travail, ou proposer une adoption institutionnelle :
 
-📜 License
-
-This specification is available under a permissive open license,
-allowing any organization to adopt or extend it.
-
-⸻
-
-🏛️ Versioning
-	•	v1.0 → core transparency fields, AI Act alignment, CMO compatibility
-
-	•	Future versions may extend provenance, signatures, cryptographic binding
-
-while maintaining backward compatibility.
-
+romain@lockdna.tech
