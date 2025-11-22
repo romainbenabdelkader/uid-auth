@@ -1,14 +1,14 @@
 {
-  "@context": "https://schema.authentica.org/ai-rights/v1",
+  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/context/context.jsonld",
   "@type": "CreativeWork",
 
   "uid_auth": "FR-2025-AUTH-000001",
   "name": "Example Work",
   "creator": "Anonymous",
-
   "origin": "human",
 
   "issued_at": "2025-11-11T00:40:07Z",
+
   "issuer": {
     "name": "AUTHENTICA",
     "type": "IdentityAuthority"
@@ -16,11 +16,13 @@
 
   "rights": {
     "ai_training": "prohibited",
-    "tdm_opt_out": true
+    "training_conditions": "https://example.org/policies/ai-training-terms",
+    "tdm_opt_out": true,
+    "jurisdiction": "EU"
   },
 
   "hash": {
     "algorithm": "sha256",
-    "value": "EXAMPLE-HASH"
+    "value": "EXAMPLE-HASH-REPLACE-WITH-REAL-SHA256"
   }
 }
