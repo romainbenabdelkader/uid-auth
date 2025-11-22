@@ -167,6 +167,8 @@ Labels & Éditeurs
 	
 	•	Believe
 
+Ces acteurs sont mentionnés uniquement à titre d’exemple d’intégration potentielle.  
+Aucun partenariat ou adoption n’est annoncé à ce stade.
 
 🌍 Pourquoi JSON-LD ?
 
