@@ -2,6 +2,7 @@ UID_AUTH  Universal Identity for Creative Works
 
 Standard ouvert de preuve d’origine et de traçabilité des œuvres (v1.0)
 
+
 UID_AUTH est un identifiant souverain, vérifiable et interopérable conçu pour fournir :
 
 •	une preuve d’origine
@@ -50,11 +51,17 @@ AUTH.TIMESTAMP.ALGO.VERSION.RANDOM.CHECKSUM
 Détail des segments
 
 Segment	Description
+
 AUTH	Préfixe du standard
+
 TIMESTAMP	Horodatage ISO 8601 (UTC)
+
 ALGO	Algorithme cryptographique (sha3-256)
+
 VERSION	Version du protocole UID_AUTH (v1)
+
 RANDOM	Aléa Base58 (8+ caractères)
+
 CHECKSUM	Contrôle d’intégrité (6+ caractères B58)
 
 
