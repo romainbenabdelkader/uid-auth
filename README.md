@@ -183,6 +183,7 @@ uid-auth/
 9. Statut du standard
 
 Statut	Description
+
 🟢 Stable	UID_AUTH v1.0 publié
 
 🟡 Implémentation	librairies de référence en cours
