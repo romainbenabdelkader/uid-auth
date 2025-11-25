@@ -1,24 +1,26 @@
 {
-  "@context": "https://schema.authentica.org/ai-rights/v1",
+  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/schema/ai-rights-context.jsonld",
   "@type": "CreativeWork",
+
+  "uid_auth": "FR-2025-AUTH-MUS-000001",
   "spec_version": "1.0",
-  "uid_auth": "US-2025-AUTH-MUS-000001",
+  "media_type": "audio/wav",
+
   "name": "Example Audio Work",
+  "creator": "Anonymous",
   "origin": "human",
-  "media_type": "audio/mp3",
 
   "rights": {
-    "ai_training": "restricted",
-    "commercial_use": "restricted",
+    "ai_training": "prohibited",
     "tdm_opt_out": true
   },
 
   "hash": {
-    "algorithm": "sha3-256",
-    "value": "EXAMPLE-HASH-US"
+    "algorithm": "sha256",
+    "value": "EXAMPLE-AUDIO-HASH"
   },
 
-  "issued_at": "2025-11-11T10:50:00Z",
+  "issued_at": "2025-11-11T00:40:07Z",
 
   "issuer": {
     "name": "AUTHENTICA",
