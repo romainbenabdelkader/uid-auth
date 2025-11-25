@@ -116,7 +116,12 @@ Covers:
 
 6. License
 
-Apache-2.0 License free to use in commercial or institutional contexts.
+6. License
+
+UID_AUTH is distributed under the Apache License, Version 2.0 (Apache-2.0).
+
+You may use it freely in commercial or institutional contexts, subject to the terms of this license.
+See the LICENSE file for details.
 
 7. Contact & Usage
 
