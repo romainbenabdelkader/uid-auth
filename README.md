@@ -116,7 +116,7 @@ Covers:
 
 6. License
 
-MIT License free to use in commercial or institutional contexts.
+Apache-2.0 License free to use in commercial or institutional contexts.
 
 7. Contact & Usage
 
