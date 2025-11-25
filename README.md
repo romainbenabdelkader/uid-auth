@@ -80,7 +80,6 @@ AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4
 Chaque œuvre peut être accompagnée d’un manifeste conforme au vocabulaire JSON-LD
 
 Exemple (audio)
-
 {
   "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/schema/ai-rights-context.jsonld",
   "@type": "CreativeWork",
