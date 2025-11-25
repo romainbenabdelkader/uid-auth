@@ -1,220 +1,207 @@
-UID_AUTH Open Standard for Creative Work Identity & Traceability
+UID_AUTH Universal Identity for Creative Works
 
-Universal manifest for provenance, copyright enforcement, and AI-training rights
+Standard ouvert de preuve d’origine et de traçabilité des œuvres (v1.0)
 
-UID_AUTH is an open, interoperable and neutral standard for assigning a unique, verifiable identity to any creative work (audio, video, text, image) and describing its rights, provenance, and AI-training permissions using JSON-LD
+UID_AUTH est un identifiant souverain, vérifiable et interopérable conçu pour fournir une preuve d’origine, une intégrité cryptographique et une traçabilité fiable des œuvres créatives à l’ère de l’IA.
 
-The goal is to provide a universal identifier layer compatible with both:
+Ce protocole peut être utilisé par :
 
-•	🇪🇺 EU regulations (AI Act, Copyright Directive, TDM opt-out)
+•	les sociétés de gestion collective (SACEM, SOCAN, PRS, GEMA, ASCAP…)
 
-•	🇺🇸 US copyright & fair-use environment (DMCA, C2PA compatibility)
+•	les institutions culturelles
 
-UID_AUTH is technology-neutral:
+•	les DSP (Spotify, Apple Music, YouTube…)
 
-no blockchain required
+•	les plateformes IA
 
-no proprietary watermark
+•	les éditeurs et producteurs
 
-no dependency on closed SDKs
+•	les créateurs individuels
+
+UID_AUTH est un standard ouvert, neutre, sans dépendance commerciale, conçu pour être intégré dans tout écosystème
 
 
-1. Objectives
+1. Objectifs du standard
 
-UID_AUTH provides:
+UID_AUTH fournit trois garanties essentielles :
 
-• A unique sovereign identifier
+Preuve d’origine
 
-Stable ID for any creative work
-(e.g., 
-“FR-SACEM-2025-001234”, 
-“US-ASCAP-2026-002781”).
+Un identifiant unique, horodaté et vérifiable, associé à une œuvre
 
-• A JSON-LD manifest for machine-readable rights
+Intégrité cryptographique
 
-Including:
+Un hash indépendant, permettant de vérifier qu’une œuvre n’a pas été modifiée.
 
-	•	human origin declaration
+Transparence AI Act
 
-•	AI-training permissions
+Un manifeste JSON-LD indiquant les conditions d’usage, notamment pour l’entraînement IA et le TDM opt-out.
+
+
+2. Structure du protocole UID_AUTH
+
+Le format est le suivant :
+
+AUTH.TIMESTAMP.ALGO.VERSION.RANDOM.CHECKSUM
+
+Détail des segments
+
+Segment	Description
+AUTH	Préfixe du standard
+TIMESTAMP	Horodatage ISO 8601 (UTC)
+ALGO	Algorithme cryptographique (sha3-256)
+VERSION	Version du protocole UID_AUTH (v1)
+RANDOM	Aléa Base58 (8+ caractères)
+CHECKSUM	Contrôle d’intégrité (6+ caractères Base58)
+
+Exemple
+
+AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4
+
+3. Exemple complet (UID_AUTH)
+
+{
+  "uid_auth": "AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4",
+  "spec_version": "1.0",
+  "media_type": "audio/wav",
+  "hash": {
+    "algorithm": "sha256",
+    "value": "EXAMPLE-AUDIO-HASH"
+  },
+  "issued_at": "2025-11-11T00:40:07Z",
+  "issuer": {
+    "name": "AUTHENTICA",
+    "type": "IdentityAuthority"
+  }
+}
+
+4. Manifeste JSON-LD (AI Act-ready)
+
+Chaque œuvre peut être accompagnée d’un manifeste conforme au vocabulaire JSON-LD
+
+Exemple (audio)
+
+{
+  "@context": "https://schema.authentica.org/ai-rights/v1",
+  "@type": "CreativeWork",
+  "uid_auth": "FR-2025-AUTH-MUS-000001",
+  "spec_version": "1.0",
+  "media_type": "audio/wav",
+  "name": "Example Audio Work",
+  "creator": "Anonymous",
+  "origin": "human",
+  "rights": {
+    "ai_training": "prohibited",
+    "tdm_opt_out": true
+  },
+  "hash": {
+    "algorithm": "sha256",
+    "value": "EXAMPLE-AUDIO-HASH"
+  },
+  "issued_at": "2025-11-11T00:40:07Z",
+  "issuer": {
+    "name": "AUTHENTICA",
+    "type": "IdentityAuthority"
+  }
+}
+
+5. Interopérabilité
+
+UID_AUTH est conçu pour coexister avec les identifiants existants :
+
+	•	ISRC (enregistrements)
+
+	•	ISWC (œuvres)
+
+	•	UPC/EAN
+
+	•	DDEX
+
+	•	EIDR (audiovisuel)
+
+Le standard n’entre pas en concurrence :
+
+il fournit la couche de preuve d’origine qui manque à tous ces systèmes
+
+
+6. Gouvernance du standard
+
+UID_AUTH est un standard évolutif, maintenu sous gouvernance institutionnelle :
+
+•	évolutions basées sur un processus de RFC (Request for Comments)
+
+•	consultation des OGC, DSP et institutions culturelles
+
+•	comité technique multi-acteurs
+
+•	compatibilité ascendante garantie
+
+
+7. Conformité réglementaire
+
+RGPD
+
+•	aucune donnée personnelle nécessaire
+
+•	traitement anonymisé
+
+•	vérification hors-ligne possible
+
+
+AI Act
+
+Le manifeste AI Rights fournit les informations exigées :
+	
+•	origine humaine / générée
+
+•	conditions d’usage
 
 •	TDM opt-out
 
-•	jurisdiction
+•	transparence machine readable
 
-•	hash & integrity
-
-•	issuer identity
-
-•	provenance chain
-
-• Compatibility with EU, US and global ecosystems
-
-Designed to interoperate with:
-
-•	SACEM, ADAMI, SPEDIDAM
-
-•	ASCAP, BMI, SESAC
-
-•	SOCAN
-
-•	C2PA / Content Authenticity Initiative
-
-•	Digital platforms (YouTube, Spotify, Deezer…)
-
-2. Repository Structure
+8. Arborescence du repos
 
 uid-auth/
 │
-├── context/        # JSON-LD @context files
-├── schema/         # JSON Schemas for validation
-├── examples/       # Manifest examples (EU / US)
-├── us/             # US-compatible profiles
-│   └── .keep
-│
 ├── README.md
-├── README_en.md
-├── README.US.md
+├── LICENSE
+│
+├── context/
+│   └── context.jsonld
+│
+├── schema/
+│   └── uid_auth_schema.json
+│
+├── examples/
+│   ├── uid_auth_example.json
+│   ├── manifest_example.jsonld
+│   └── manifest_us_example.jsonld
+│
 └── version.txt
 
-3. EU Manifest Example (AI Act Ready)
+9. Statut du standard
 
-➡️ See examples/eu_manifest_example.jsonld
+Statut	Description
+🟢 Stable	UID_AUTH v1.0 publié
 
+🟡 Implémentation	librairies de référence en cours
 
-4. US Manifest Example
+🔵 Pilotes institutionnels	OGC & institutions culturelles
 
-➡️ See examples/manifest_us_example.jsonld
+10. Licence
 
-Includes fields specific to:
+Ce standard est publié sous licence Apache 2.0, permettant :
 
-•	DMCA compatibility
+•	usage libre
 
-•	Fair-use considerations
+•	implémentation libre 
+(commerciale ou publique)
 
-•	C2PA alignment
-
-•	US CMOs like ASCAP/BMI
-
-5. JSON Schema
-
-/schema/uid_auth_schema.json
-
-Covers:
-
-•	rights (AI training permissions)
-
-•	jurisdiction
-
-•	tdm_opt_out
-
-•	hash integrity
-
-•	issuer metadata
-
-•	provenance chain
+•	contributions ouvertes
 
 
-6. License
+11. Contact
 
-UID_AUTH is distributed under the Apache License, Version 2.0 (Apache-2.0).
-
-You may use it freely in commercial or institutional contexts, subject to the terms of this license.
-See the LICENSE file for details.
-
-7. Contact & Usage
-
-UID_AUTH can be integrated into:
-
-•	content ingestion workflows
-
-•	rights management systems
-
-•	copyright societies
-
-•	DSP ingestion pipelines
-
-•	generative AI safety layers
-
-                     ┌────────────────────────────────────┐
-                     │           Création d’une œuvre      │
-                     │   (audio / image / texte / vidéo)   │
-                     └────────────────────────────────────┘
-                                      │
-                                      ▼
-                   ┌─────────────────────────────────────┐
-                   │        Extraction des propriétés     │
-                   │     (horodatage, hash, metadata)     │
-                   └─────────────────────────────────────┘
-                                      │
-                                      ▼
-                   ┌─────────────────────────────────────┐
-                   │         Génération UID_AUTH          │
-                   │ AUTH.TIMESTAMP.ALGO.VERSION.RANDOM   │
-                   └─────────────────────────────────────┘
-                                      │
-                                      ▼
-             ┌──────────────────────────────────────────────────┐
-             │   Création du Manifeste AI-Rights (JSON-LD)      │
-             │  • origin: "human"                               │
-             │  • media_type                                     │
-             │  • tdm_opt_out                                    │
-             │  • ai_training: "prohibited"                      │
-             │  • spec_version                                   │
-             │  • integrity hash                                 │
-             └──────────────────────────────────────────────────┘
-                                      │
-                                      ▼
-             ┌──────────────────────────────────────────────────┐
-             │     Publication / Distribution de l’œuvre         │
-             │   (DSP, radio, TV, plateformes, archives)         │
-             └──────────────────────────────────────────────────┘
-                                      │
-                                      ▼
-        ┌─────────────────────────────────────────────────────────────┐
-        │           Vérification hors-ligne ou serveur                │
-        │  • validation UID_AUTH                                      │
-        │  • validation manifeste JSON-LD                             │
-        │  • contrôle d’intégrité                                     │
-        │  • conformité AI Act / TDM opt-out                          │
-        └─────────────────────────────────────────────────────────────┘
-                                      │
-                                      ▼
-                   ┌─────────────────────────────────────┐
-                   │      Journalisation / Preuve         │
-                   │   (registre interne ou OGC/CMO)      │
-                   └─────────────────────────────────────┘
-
-
-8. Gouvernance du standard
-
-Les évolutions du protocole UID_AUTH suivent un processus ouvert et transparent :
-
-- Consultation des organismes de gestion collective (OGC)
-
-- Discussions techniques avec les partenaires institutionnels
-
-- Publication de propositions d’évolution (RFC)
-
-- Validation par consensus multi-acteurs
-
-Cette gouvernance garantit :
-
-- la stabilité du format
-
-- la compatibilité ascendante
-
-- l’indépendance vis-à-vis de tout fournisseur unique
-
-9. Intégrité & Récupération
-
-- Journal cryptographique des émissions (hors scope de la spécification)
-
-- Possibilité de recertifier une œuvre en conservant l’antériorité
-
-- Audit trail complet pour les besoins réglementaires
-
-
-For institutional pilots (EU or US), contact:
-
+Pour toute question institutionnelle ou collaboration :
 romain@lockdna.tech
