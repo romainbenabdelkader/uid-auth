@@ -7,11 +7,11 @@ UID_AUTH is an open and neutral manifest format for certifying the origin, integ
 
 It is designed as a voluntary standard for U.S. creators and organizations (ASCAP, BMI, SESAC, RIAA, MLC, publishers, indie artists) to establish verifiable provenance, protect works against unauthorized AI training, and support litigation-grade evidence under U.S. copyright law
 
-Why UID_AUTH matters in the U.S.
+Why UID_AUTH matters in the U.S
 
-The United States has no equivalent to the European AI Act.
+The United States has no equivalent to the European AI Act
 
-AI training falls under fair use, evaluated case-by-case.
+AI training falls under fair use, evaluated case-by-case
 
 UID_AUTH provides creators and rights organizations with:
 
@@ -29,9 +29,12 @@ UID_AUTH provides creators and rights organizations with:
 
 •	Optional integration with Content Credentials / C2PA
 
-UID_AUTH does not replace ISRC/ISWC/ISNI.
+UID_AUTH does not replace ISRC/ISWC/ISNI
+
 It adds the missing layer: 
-verifiable provenance native inside the file.
+
+verifiable provenance native inside the file
+
 
 🇺🇸 Example U.S. Manifest (JSON-LD)
 
@@ -73,11 +76,12 @@ DMCA §1201 / §1202
 
 Metadata to restrict automated scraping/AI training
 
-(“Circumvention of a technological measure”)
+(Circumvention of a technological measure)
 
 Litigation against AI models
 
 Supports claims involving:
+
 •	unauthorized training
 
 •	derivative works
@@ -98,6 +102,7 @@ cryptographic evidence
 Interoperability
 
 Compatible with:
+
 •	YouTube Content ID
 
 •	Facebook Rights Manager
