@@ -36,7 +36,7 @@ verifiable provenance native inside the file.
 🇺🇸 Example U.S. Manifest (JSON-LD)
 
 {
-  "@context": "https://schema.authentica.org/context.jsonld",
+  "@context": https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/context/schema/ai-rights-context.jsonld
   "uid_auth": "US-2025-AUTH-000001",
 
   "name": "Example Song",
