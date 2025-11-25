@@ -2,23 +2,24 @@
   "@context": "https://schema.authentica.org/ai-rights/v1",
   "@type": "CreativeWork",
   "spec_version": "1.0",
-  "uid_auth": "FR-2025-AUTH-MUS-000001",
-  "name": "Exemple Oeuvre Audio",
+  "uid_auth": "US-2025-AUTH-MUS-000001",
+  "name": "Example Audio Work",
   "origin": "human",
-  "media_type": "audio/wav",
+  "media_type": "audio/mp3",
 
   "rights": {
-    "ai_training": "prohibited",
+    "ai_training": "restricted",
+    "commercial_use": "restricted",
     "tdm_opt_out": true
   },
 
   "hash": {
     "algorithm": "sha3-256",
-    "value": "EXAMPLE-AUDIO-HASH"
+    "value": "EXAMPLE-HASH-US"
   },
 
-  "issued_at": "2025-11-11T10:40:07Z",
-  
+  "issued_at": "2025-11-11T10:50:00Z",
+
   "issuer": {
     "name": "AUTHENTICA",
     "type": "IdentityAuthority"
