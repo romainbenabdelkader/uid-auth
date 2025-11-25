@@ -1,37 +1,15 @@
 {
   "@context": {
     "uid_auth": "https://schema.authentica.org/uid_auth",
-
     "name": "http://schema.org/name",
     "creator": "http://schema.org/creator",
-
     "origin": "https://schema.authentica.org/origin",
-
     "issued_at": {
       "@id": "http://schema.org/dateCreated",
       "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
     },
-
-    "issuer": "https://schema.authentica.org/issuer",
-
     "rights": "https://schema.authentica.org/rights",
-    "ai_training": "https://schema.authentica.org/rights/ai_training",
-    "training_conditions": {
-      "@id": "https://schema.authentica.org/rights/training_conditions",
-      "@type": "@id"
-    },
-    "jurisdiction": "https://schema.authentica.org/rights/jurisdiction",
-    "tdm_opt_out": {
-      "@id": "https://schema.authentica.org/rights/tdm_opt_out",
-      "@type": "http://www.w3.org/2001/XMLSchema#boolean"
-    },
-
-    "hash": "https://schema.authentica.org/hash",
-    "algorithm": "https://schema.authentica.org/hash/algorithm",
-    "value": "https://schema.authentica.org/hash/value",
-
-    "work_code": "https://schema.authentica.org/work_code",
-    "rights_society": "https://schema.authentica.org/rights_society",
-    "provenance_chain": "https://schema.authentica.org/provenance_chain"
+    "media_type": "http://schema.org/encodingFormat",
+    "spec_version": "https://schema.authentica.org/spec_version"
   }
 }
