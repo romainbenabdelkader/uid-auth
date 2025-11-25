@@ -1,9 +1,14 @@
 {
-  "uid_auth": "FR-2025-AUTH-000001",
-  "issued_at": "2025-11-11T00:40:07Z",
-  "issuer": "AUTHENTICA",
+  "uid_auth": "FR-2025-AUTH-MUS-000001",
+  "spec_version": "1.0",
+  "issued_at": "2025-11-11T10:30:00Z",
+  "media_type": "audio/wav",
   "hash": {
-    "algorithm": "sha256",
-    "value": "EXAMPLE-UID-AUTH-000001"
+    "algorithm": "sha3-256",
+    "value": "EXAMPLE-AUDIO-HASH"
+  },
+  "issuer": {
+    "name": "AUTHENTICA",
+    "type": "IdentityAuthority"
   }
 }
