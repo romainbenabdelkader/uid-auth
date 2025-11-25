@@ -10,6 +10,9 @@ UID_AUTH is a sovereign, verifiable, and interoperable identifier designed to pr
 
 •	AI-Act–ready traceability for creative works (music, video, image, text)
 
+UID_AUTH is an open, minimal and extensible standard.
+Each institution remains fully sovereign in how it uses and integrates it
+
 This protocol can be used by:
 
 •	Collective Management Organizations (CMOs): SACEM, SOCAN, PRS, GEMA, ASCAP…
@@ -161,22 +164,7 @@ It complements (does not replace) these standards by adding:
 👉 AI Act transparency layer
 
 
-
-6. Standard Governance
-
-UID_AUTH evolves under institutional governance:
-
-•	RFC-based process for each update
-
-•	consultation of CMOs, DSPs, and cultural institutions
-
-•	multi-stakeholder technical committee
-
-•	guaranteed backward compatibility
-
-
-
-7. Regulatory Compliance
+6. Regulatory Compliance
 
 GDPR
 
@@ -200,7 +188,7 @@ The JSON-LD manifest provides required transparency signals:
 
 
 
-8.  Repository Structure
+7.  Repository Structure
 
 uid-auth/
 │
@@ -220,14 +208,14 @@ uid-auth/
 │
 └── version.txt
 
-9.  Standard Status
+8.  Standard Status
     
 Status	Description
 🟢 Stable	UID_AUTH v1.0 released
 🟡 Implementations	Reference libraries in development
 🔵 Pilots	Institutional pilots (CMOs & cultural institutions)
 
-11. 📜 License
+9. 📜 License
 
 This standard is published under the Apache 2.0 License, allowing:
 
@@ -239,7 +227,7 @@ This standard is published under the Apache 2.0 License, allowing:
 
 
 
- Contact
+10. Contact
 
 For institutional inquiries or collaboration:
 romain@lockdna.tech
