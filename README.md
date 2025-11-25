@@ -82,7 +82,7 @@ Chaque œuvre peut être accompagnée d’un manifeste conforme au vocabulaire J
 Exemple (audio)
 
 {
-  "@context": "https://schema.authentica.org/ai-rights/v1",
+  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/authentica-ai-rights/main/schema/ai_rights_context.json",
   "@type": "CreativeWork",
   "uid_auth": "FR-2025-AUTH-MUS-000001",
   "spec_version": "1.0",
