@@ -104,7 +104,6 @@ Exemple (audio)
     "type": "IdentityAuthority"
   }
 }
-
 5. Interopérabilité
 
 UID_AUTH est conçu pour coexister avec les identifiants existants :
