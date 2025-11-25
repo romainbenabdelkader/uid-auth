@@ -1,0 +1,38 @@
+{
+  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/context/context.jsonld",
+  "@type": "CreativeWork",
+
+  "uid_auth": "US-2025-AUTH-000001",
+  "name": "Example US Work",
+  "creator": "Anonymous",
+  "origin": "human",
+
+  "issued_at": "2025-11-22T15:00:00Z",
+  "issuer": {
+    "name": "AUTHENTICA",
+    "type": "IdentityAuthority"
+  },
+
+  "rights": {
+    "ai_training": "prohibited",
+    "tdm_opt_out": true,
+    "training_conditions": "https://example.com/ai-policy",
+    "jurisdiction": "US"
+  },
+
+  "hash": {
+    "algorithm": "sha256",
+    "value": "EXAMPLE-HASH-US"
+  },
+
+  "rights_society": "ASCAP",
+  "work_code": "ASCAP-123456789",
+
+  "provenance_chain": [
+    {
+      "event": "creation",
+      "at": "2025-11-01T10:00:00Z",
+      "by": "Original Studio"
+    }
+  ]
+}
