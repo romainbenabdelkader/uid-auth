@@ -1,75 +1,94 @@
 UID_AUTH  Universal Identity for Creative Works
 
-Standard ouvert de preuve d’origine et de traçabilité des œuvres (v1.0)
+Open standard for origin proof and traceability of creative works (v1.0)
 
 
-UID_AUTH est un identifiant souverain, vérifiable et interopérable conçu pour fournir :
 
-•	une preuve d’origine
+UID_AUTH is a sovereign, verifiable and interoperable identifier designed to provide:
 
-•	une intégrité cryptographique
+- origin proof  
 
-•	une traçabilité fiable des œuvres créatives à l’ère de l’IA
+- cryptographic integrity  
 
-Ce protocole peut être utilisé par :
+- reliable traceability of works in the age of AI  
 
-•	les sociétés de gestion collective (SACEM, SOCAN, PRS, GEMA, ASCAP…)
+It can be used by:
 
-•	les institutions culturelles
+- collective management organisations (SACEM, SOCAN, PRS, GEMA, ASCAP, …)
 
-•	les DSP (Spotify, Apple Music, YouTube…)
+- cultural institutions
 
-•	les plateformes IA
+- DSPs (Spotify, Apple Music, YouTube, …)
 
-•	les éditeurs et producteurs
+- AI platforms
 
-•	les créateurs individuels
+- publishers and producers
 
-UID_AUTH est un standard ouvert, neutre, sans dépendance commerciale, conçu pour être intégré dans tout écosystème.
+- individual creators
 
-1. Objectifs du standard
-
-UID_AUTH fournit trois garanties essentielles :
-
-✔ Preuve d’origine
-
-Un identifiant unique, horodaté et vérifiable, associé à une œuvre
-
-✔ Intégrité cryptographique
-
-Un hash indépendant permettant de vérifier qu’une œuvre n’a pas été modifiée
-
-✔ Transparence AI Act
-
-Un manifeste JSON-LD indiquant les conditions d’usage (entraînement IA, TDM opt-out…)
+UID_AUTH is an open, neutral standard with no commercial lock-in, designed to be integrated in any ecosystem
 
 
-2. Structure du protocole UID_AUTH
+
+1. Goals of the standard
+
+UID_AUTH provides three core guarantees:
+
+✔ Origin proof
+
+A unique, time-stamped and verifiable identifier attached to a work.
+
+✔ Cryptographic integrity
+
+An independent hash allowing verification that a work has not been modified.
+
+✔ AI Act transparency
+
+A JSON-LD manifest describing usage conditions, including AI training and TDM opt-out.
+
+
+2. UID_AUTH protocol structure
+
+The generic format is:
+
+text
 
 AUTH.TIMESTAMP.ALGO.VERSION.RANDOM.CHECKSUM
 
-Détail des segments
+Segment description:
 
 Segment	Description
 
-AUTH	Préfixe du standard
+AUTH	Standard prefix
 
-TIMESTAMP	Horodatage ISO 8601 (UTC)
+TIMESTAMP	ISO 8601 UTC timestamp
 
-ALGO	Algorithme cryptographique (sha3-256)
+ALGO	Cryptographic algorithm (e.g. sha3-256)
 
-VERSION	Version du protocole UID_AUTH (v1)
+VERSION	UID_AUTH protocol version (e.g. v1)
 
-RANDOM	Aléa Base58 (8+ caractères)
+RANDOM	Base58 random string (8+ chars)
 
-CHECKSUM	Contrôle d’intégrité (6+ caractères B58)
+CHECKSUM	Base58 integrity check (6+ chars)
 
+Segment	Description
 
-Exemple
+AUTH	Standard prefix
+
+TIMESTAMP	ISO 8601 UTC timestamp
+
+ALGO	Cryptographic algorithm (e.g. sha3-256)
+
+VERSION	UID_AUTH protocol version (e.g. v1)
+
+RANDOM	Base58 random string (8+ chars)
+
+CHECKSUM	Base58 integrity check (6+ chars)
 
 AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4
 
-3. Exemple complet (UID_AUTH)
+
+3. UID_AUTH example (JSON)
 
 {
   "uid_auth": "AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4",
@@ -86,11 +105,11 @@ AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4
   }
 }
 
-4. Manifeste JSON-LD (AI Act-ready)
+4. JSON-LD Manifest (AI-Act ready)
 
-Chaque œuvre peut être accompagnée d’un manifeste conforme au vocabulaire JSON-LD
+Each work can be accompanied by a JSON-LD manifest using the AI-rights context.
 
-Exemple (audio)
+Audio example:
 
 {
   "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/schema/ai-rights-context.jsonld",
@@ -122,104 +141,102 @@ Exemple (audio)
   }
 }
 
-5. Interopérabilité
+5. Interoperability
 
-UID_AUTH coexiste avec les identifiants existants :
+UID_AUTH is designed to co-exist with existing identifiers:
 
-•	ISRC (enregistrements)
+	•	ISRC (recordings)
 
-•	ISWC (œuvres)
+	•	ISWC (works)
 
-•	UPC / EAN
+	•	UPC / EAN
 
-•	DDEX
+	•	DDEX
 
-•	EIDR (audiovisuel)
+	•	EIDR (audiovisual)
 
-Il n’entre pas en concurrence :
+It does not compete with these systems:
 
-Il fournit la couche de preuve d’origine qui manque à ces systèmes
-
-
-6.  Gouvernance du standard
-
-UID_AUTH est un standard évolutif, maintenu sous gouvernance institutionnelle :
-
-•	processus de RFC (Request for Comments) pour chaque évolution
-
-•	consultation des OGC, DSP et institutions culturelles
-
-•	comité technique multi-acteurs
-
-•	compatibilité ascendante garantie
+it provides the missing origin-proof layer that can be attached to them.
 
 
-7. Conformité réglementaire
 
-RGPD
+6. Standard governance
 
-•	aucune donnée personnelle n’est requise
+UID_AUTH is an evolutive standard under institutional governance:
 
-•	traitement anonymisé
+•	changes follow an open RFC-style process
 
-•	vérification hors-ligne possible
+•	consultation of CMOs, DSPs and cultural institutions
+
+•	multi-stakeholder technical committee
+
+•	backward compatibility is preserved
+
+
+
+7. Regulatory compliance
+
+GDPR
+
+•	no personal data required
+
+•	anonymised processing
+
+•	offline verification is possible
 
 AI Act
 
-Le manifeste AI-Rights fournit :
+The AI-rights manifest provides:
 
-•	l’origine de l’œuvre (humaine / générée)
+•	work origin (human / AI-generated / hybrid)
 
-•	les conditions d’usage
+•	usage conditions
 
-•	TDM opt-out
+•	TDM opt-out signal
 
-•	transparence machine-readable.
+•	machine-readable transparency
 
 
-8. Arborescence du repository
 
-uid-auth/
-│
-├── README.md
+8. Repository structure
+
+uid-auth/├── README.md
 ├── LICENSE
-│
 ├── schema/
+│   ├── uid_auth_schema.json
 │   └── ai-rights-context.jsonld
-│
 ├── context/
 │   └── context.jsonld
-│
 ├── examples/
 │   ├── uid_auth_example.json
 │   ├── manifest_example.jsonld
 │   └── manifest_us_example.jsonld
-│
 └── version.txt
 
-9. Statut du standard
 
-Statut	Description
+9. Standard status
 
-🟢 Stable	UID_AUTH v1.0 publié
+Status	Description
 
-🟡 Implémentation	Librairies de référence en cours
+🟢	UID_AUTH v1.0 – stable specification
 
-🔵 Pilotes	Pilotes institutionnels (OGC & institutions culturelles)
+🟡	Reference libraries – in development
 
+🔵	Institutional pilots (CMOs & cultural bodies)
 
 10. Licence
 
-Ce standard est publié sous licence Apache 2.0, permettant :
+This standard is published under the Apache 2.0 licence, allowing:
 
-•	usage libre
+•	free use
 
-•	implémentation libre (publique ou commerciale)
+•	free implementation (public or commercial)
 
-•	contributions ouvertes
+•	open contributions
+
 
 
 11. Contact
 
-Pour toute question institutionnelle ou collaboration :
-romain@lockdna.tech
+For institutional questions or collaborations: romain@lockdna.tech
