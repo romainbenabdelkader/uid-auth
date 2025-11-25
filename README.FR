@@ -1,0 +1,237 @@
+🇫🇷 README  UID_AUTH
+
+Standard ouvert de preuve d’origine et de traçabilité des œuvres (v1.0)
+
+UID_AUTH est un identifiant souverain, vérifiable et interopérable conçu pour fournir :
+
+•	une preuve d’origine fiable,
+
+•	une intégrité cryptographique indépendante,
+
+•	une traçabilité AI Act-ready des œuvres créatives (musique, vidéo, image, texte).
+
+Ce protocole peut être utilisé par :
+
+•	les sociétés de gestion collective (SACEM, SOCAN, PRS, GEMA, ASCAP…)
+
+•	les institutions culturelles
+
+•	les DSP (Spotify, Apple Music, YouTube…)
+
+•	les plateformes IA
+
+•	les éditeurs / producteurs
+
+•	les créateurs individuels
+
+UID_AUTH est un standard ouvert, neutre, sans dépendance commerciale, intégrable dans tout écosystème existant
+
+
+
+1. Objectifs du standard
+
+UID_AUTH fournit trois garanties essentielles :
+
+✔ 1. Preuve d’origine
+
+Un identifiant unique, horodaté, généré au moment de la création et vérifiable hors-ligne.
+
+✔ 2. Intégrité cryptographique
+
+Un hash indépendant (sha3-256) permettant de vérifier qu’une œuvre n’a pas été modifiée.
+
+✔ 3. Transparence AI Act
+
+Un manifeste JSON-LD indiquant les conditions d’usage :
+
+•	entraînement IA (autorisé / interdit / restreint)
+
+•	TDM opt-out
+
+•	origine humaine ou générée
+
+•	transparence machine-readable
+
+
+
+2. 🧩 Structure du protocole UID_AUTH
+
+Format officiel (v1.0) :
+
+AUTH.TIMESTAMP.ALGORITHM.VERSION.RANDOM.CHECKSUM
+
+Exemple
+
+AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4
+
+Détail des segments
+Segment	Description
+AUTH	Préfixe du standard
+TIMESTAMP	Horodatage ISO 8601 UTC
+ALGORITHM	sha3-256
+VERSION	Version du protocole (v1)
+RANDOM	Aléa Base58 (8+ caractères)
+CHECKSUM	Contrôle d’intégrité Base58 (6+ caractères)
+
+UID_AUTH ne remplace pas ISRC / ISWC :
+il ajoute la couche de preuve d’origine, manquante dans les standards existants
+
+
+
+3. 📘 Exemple complet (JSON)
+
+Fichier : examples/uid_auth_example.json
+
+{
+  "uid_auth": "AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4",
+  "spec_version": "1.0",
+  "media_type": "audio/wav",
+  "hash": {
+    "algorithm": "sha3-256",
+    "value": "EXAMPLE-AUDIO-HASH"
+  },
+  "issued_at": "2025-11-11T00:40:07Z",
+  "issuer": {
+    "name": "AUTHENTICA",
+    "type": "IdentityAuthority"
+  }
+}
+
+4.  Manifeste JSON-LD (AI Act-ready)
+
+Chaque œuvre peut être accompagnée d’un manifeste conforme au vocabulaire JSON-LD
+
+Fichier : examples/manifest_example.jsonld
+
+{
+  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/context/schema/ai-rights-context.jsonld",
+  "@type": "CreativeWork",
+
+  "uid_auth": "AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4",
+  "spec_version": "1.0",
+  "media_type": "audio/wav",
+
+  "name": "Example Audio Work",
+  "creator": "Anonymous",
+  "origin": "human",
+
+  "rights": {
+    "ai_training": "prohibited",
+    "tdm_opt_out": true
+  },
+
+  "hash": {
+    "algorithm": "sha3-256",
+    "value": "EXAMPLE-AUDIO-HASH"
+  },
+
+  "issued_at": "2025-11-11T00:40:07Z",
+
+  "issuer": {
+    "name": "AUTHENTICA",
+    "type": "IdentityAuthority"
+  }
+}
+
+5. 🔗 Interopérabilité
+
+UID_AUTH coexiste avec les identifiants existants :
+
+•	ISRC (enregistrements)
+
+•	ISWC (œuvres)
+
+•	UPC / EAN
+
+•	DDEX
+
+•	EIDR (audiovisuel)
+
+Il complète, sans remplacer :
+
+ il fournit la preuve d’origine + l’intégrité cryptographique que ces standards n’incluent pas
+
+
+
+6. Gouvernance du standard
+
+UID_AUTH est un standard évolutif, sous gouvernance institutionnelle :
+
+•	processus de RFC (Request for Comments) pour chaque évolution
+
+•	consultation des OGC, DSP et institutions culturelles
+
+•	comité technique multi-acteurs
+
+•	compatibilité ascendante garantie
+
+
+
+7. Conformité réglementaire
+
+
+RGPD
+
+•	aucune donnée personnelle requise
+
+•	traitement anonymisé
+
+•	vérification hors-ligne possible
+
+AI Act
+
+Le manifeste JSON-LD fournit tous les signaux requis :
+
+•	origine (humaine / générée)
+
+•	conditions d’usage
+
+•	TDM opt-out
+
+•	transparence machine-readable
+
+
+
+8. Arborescence du repository
+
+uid-auth/
+│
+├── README.md
+├── LICENSE
+│
+├── schema/
+│   └── uid_auth_schema.json
+│
+├── context/
+│   └── ai-rights-context.jsonld
+│
+├── examples/
+│   ├── uid_auth_example.json
+│   ├── manifest_example.jsonld
+│   └── manifest_us_example.jsonld
+│
+└── version.txt
+
+9. 🟢 Statut du standard
+
+Statut	Description
+🟢 Stable	UID_AUTH v1.0 publié
+🟡 Implémentations	Librairies de référence en cours
+🔵 Pilotes	Pilotes institutionnels (OGC & Institutions culturelles)
+
+10. 📜 Licence
+
+
+Ce standard est publié sous licence Apache 2.0, permettant :
+
+•	usage libre
+
+•	implémentation publique ou commerciale
+
+•	contributions ouvertes
+
+
+11.  Contact
+
+Pour toute question institutionnelle ou collaboration :
+romain@lockdna.tech
