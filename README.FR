@@ -54,7 +54,7 @@ Un manifeste JSON-LD indiquant les conditions d’usage :
 
 
 
-2. 🧩 Structure du protocole UID_AUTH
+2. Structure du protocole UID_AUTH
 
 Format officiel (v1.0) :
 
@@ -78,7 +78,7 @@ il ajoute la couche de preuve d’origine, manquante dans les standards existant
 
 
 
-3. 📘 Exemple complet (JSON)
+3. Exemple complet (JSON)
 
 Fichier : examples/uid_auth_example.json
 
@@ -212,14 +212,14 @@ uid-auth/
 │
 └── version.txt
 
-9. 🟢 Statut du standard
+9. Statut du standard
 
 Statut	Description
 🟢 Stable	UID_AUTH v1.0 publié
 🟡 Implémentations	Librairies de référence en cours
 🔵 Pilotes	Pilotes institutionnels (OGC & Institutions culturelles)
 
-10. 📜 Licence
+10. Licence
 
 
 Ce standard est publié sous licence Apache 2.0, permettant :
@@ -231,7 +231,7 @@ Ce standard est publié sous licence Apache 2.0, permettant :
 •	contributions ouvertes
 
 
-11.  Contact
+11. Contact
 
 Pour toute question institutionnelle ou collaboration :
 romain@lockdna.tech
