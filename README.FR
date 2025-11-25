@@ -4,11 +4,14 @@ Standard ouvert de preuve d’origine et de traçabilité des œuvres (v1.0)
 
 UID_AUTH est un identifiant souverain, vérifiable et interopérable conçu pour fournir :
 
-•	une preuve d’origine fiable,
+•	une preuve d’origine fiable
 
-•	une intégrité cryptographique indépendante,
+•	une intégrité cryptographique indépendante
 
-•	une traçabilité AI Act-ready des œuvres créatives (musique, vidéo, image, texte).
+•	une traçabilité AI Act-ready des œuvres créatives (musique, vidéo, image, texte)
+
+UID_AUTH est un standard ouvert, évolutif et minimaliste.
+Chaque institution reste entièrement souveraine dans son usage et son intégration
 
 Ce protocole peut être utilisé par :
 
