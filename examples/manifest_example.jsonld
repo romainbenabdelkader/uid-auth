@@ -1,3 +1,5 @@
+"@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/schema/ai-rights-context.jsonld",
+
 {
   "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/context/context.jsonld",
   "@type": "CreativeWork",
