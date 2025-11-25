@@ -82,26 +82,26 @@ Chaque œuvre peut être accompagnée d’un manifeste conforme au vocabulaire J
 Exemple (audio)
 
 {
-  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/authentica-ai-rights/main/schema/ai_rights_context.json",
+  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/authentica-ai-rights/main/schema/ai-rights-context.jsonld",
   "@type": "CreativeWork",
-
   "uid_auth": "FR-2025-AUTH-MUS-000001",
   "spec_version": "1.0",
   "media_type": "audio/wav",
-
   "name": "Example Audio Work",
   "creator": "Anonymous",
   "origin": "human",
-
   "rights": {
-    "ai_training_prohibited": true,
-    "tdm_opt_out": true,
-    "derivative_generation_prohibited": true
+    "ai_training": "prohibited",
+    "tdm_opt_out": true
   },
-
-  "provenance": {
-    "generated_by": "AUTHENTICA",
-    "generation_timestamp": "2025-01-12T14:21:53Z"
+  "hash": {
+    "algorithm": "sha256",
+    "value": "EXAMPLE-AUDIO-HASH"
+  },
+  "issued_at": "2025-11-11T00:40:07Z",
+  "issuer": {
+    "name": "AUTHENTICA",
+    "type": "IdentityAuthority"
   }
 }
 
