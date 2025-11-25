@@ -114,7 +114,6 @@ Covers:
 
 •	provenance chain
 
-6. License
 
 6. License
 
@@ -186,6 +185,26 @@ UID_AUTH can be integrated into:
                    │   (registre interne ou OGC/CMO)      │
                    └─────────────────────────────────────┘
 
+
+8. Gouvernance du standard
+
+Les évolutions du protocole UID_AUTH suivent un processus ouvert et transparent :
+
+- Consultation des organismes de gestion collective (OGC)
+
+- Discussions techniques avec les partenaires institutionnels
+
+- Publication de propositions d’évolution (RFC)
+
+- Validation par consensus multi-acteurs
+
+Cette gouvernance garantit :
+
+- la stabilité du format
+
+- la compatibilité ascendante
+
+- l’indépendance vis-à-vis de tout fournisseur unique
 
 
 For institutional pilots (EU or US), contact:
