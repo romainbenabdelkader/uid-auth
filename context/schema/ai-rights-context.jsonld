@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "uid_auth": "https://schema.authentica.org/uid_auth",
+    "name": "http://schema.org/name",
+    "creator": "http://schema.org/creator",
+    "origin": "https://schema.authentica.org/origin",
+    "issued_at": {
+      "@id": "http://schema.org/dateCreated",
+      "@type": "http://www.w3.org/2001/XMLSchema#dateTime"
+    },
+    "rights": "https://schema.authentica.org/rights",
+    "media_type": "http://schema.org/encodingFormat",
+    "spec_version": "https://schema.authentica.org/spec_version"
+  }
+}
