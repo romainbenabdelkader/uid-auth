@@ -1,38 +1,26 @@
 {
-  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/context/context.jsonld",
+  "@context": "https://schema.authentica.org/ai-rights/v1",
   "@type": "CreativeWork",
-
-  "uid_auth": "US-2025-AUTH-000001",
-  "name": "Example US Work",
-  "creator": "Anonymous",
+  "spec_version": "1.0",
+  "uid_auth": "FR-2025-AUTH-MUS-000001",
+  "name": "Exemple Oeuvre Audio",
   "origin": "human",
-
-  "issued_at": "2025-11-22T15:00:00Z",
-  "issuer": {
-    "name": "AUTHENTICA",
-    "type": "IdentityAuthority"
-  },
+  "media_type": "audio/wav",
 
   "rights": {
     "ai_training": "prohibited",
-    "tdm_opt_out": true,
-    "training_conditions": "https://example.com/ai-policy",
-    "jurisdiction": "US"
+    "tdm_opt_out": true
   },
 
   "hash": {
-    "algorithm": "sha256",
-    "value": "EXAMPLE-HASH-US"
+    "algorithm": "sha3-256",
+    "value": "EXAMPLE-AUDIO-HASH"
   },
 
-  "rights_society": "ASCAP",
-  "work_code": "ASCAP-123456789",
-
-  "provenance_chain": [
-    {
-      "event": "creation",
-      "at": "2025-11-01T10:00:00Z",
-      "by": "Original Studio"
-    }
-  ]
+  "issued_at": "2025-11-11T10:40:07Z",
+  
+  "issuer": {
+    "name": "AUTHENTICA",
+    "type": "IdentityAuthority"
+  }
 }
