@@ -206,6 +206,14 @@ Cette gouvernance garantit :
 
 - l’indépendance vis-à-vis de tout fournisseur unique
 
+9. Intégrité & Récupération
+
+- Journal cryptographique des émissions (hors scope de la spécification)
+
+- Possibilité de recertifier une œuvre en conservant l’antériorité
+
+- Audit trail complet pour les besoins réglementaires
+
 
 For institutional pilots (EU or US), contact:
 
