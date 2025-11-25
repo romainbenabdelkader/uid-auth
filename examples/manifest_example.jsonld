@@ -1,30 +1,29 @@
-"@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/schema/ai-rights-context.jsonld",
-
 {
-  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/context/context.jsonld",
+  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/schema/ai-rights-context.jsonld",
   "@type": "CreativeWork",
 
-  "uid_auth": "FR-2025-AUTH-000001",
-  "name": "Example Work",
+  "uid_auth": "FR-2025-AUTH-MUS-000001",
+  "spec_version": "1.0",
+  "media_type": "audio/wav",
+
+  "name": "Example Audio Work",
   "creator": "Anonymous",
   "origin": "human",
+
+  "rights": {
+    "ai_training": "prohibited",
+    "tdm_opt_out": true
+  },
+
+  "hash": {
+    "algorithm": "sha256",
+    "value": "EXAMPLE-AUDIO-HASH"
+  },
 
   "issued_at": "2025-11-11T00:40:07Z",
 
   "issuer": {
     "name": "AUTHENTICA",
     "type": "IdentityAuthority"
-  },
-
-  "rights": {
-    "ai_training": "prohibited",
-    "training_conditions": "https://example.org/policies/ai-training-terms",
-    "tdm_opt_out": true,
-    "jurisdiction": "EU"
-  },
-
-  "hash": {
-    "algorithm": "sha256",
-    "value": "EXAMPLE-HASH-REPLACE-WITH-REAL-SHA256"
   }
 }
