@@ -1,5 +1,5 @@
 {
-  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/schema/ai-rights-context.jsonld",
+  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/schema/schema/ai-rights-context.jsonld",
   "@type": "CreativeWork",
 
   "uid_auth": "FR-2025-AUTH-MUS-000001",
