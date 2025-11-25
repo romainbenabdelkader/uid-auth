@@ -137,6 +137,57 @@ UID_AUTH can be integrated into:
 
 •	generative AI safety layers
 
+                     ┌────────────────────────────────────┐
+                     │           Création d’une œuvre      │
+                     │   (audio / image / texte / vidéo)   │
+                     └────────────────────────────────────┘
+                                      │
+                                      ▼
+                   ┌─────────────────────────────────────┐
+                   │        Extraction des propriétés     │
+                   │     (horodatage, hash, metadata)     │
+                   └─────────────────────────────────────┘
+                                      │
+                                      ▼
+                   ┌─────────────────────────────────────┐
+                   │         Génération UID_AUTH          │
+                   │ AUTH.TIMESTAMP.ALGO.VERSION.RANDOM   │
+                   └─────────────────────────────────────┘
+                                      │
+                                      ▼
+             ┌──────────────────────────────────────────────────┐
+             │   Création du Manifeste AI-Rights (JSON-LD)      │
+             │  • origin: "human"                               │
+             │  • media_type                                     │
+             │  • tdm_opt_out                                    │
+             │  • ai_training: "prohibited"                      │
+             │  • spec_version                                   │
+             │  • integrity hash                                 │
+             └──────────────────────────────────────────────────┘
+                                      │
+                                      ▼
+             ┌──────────────────────────────────────────────────┐
+             │     Publication / Distribution de l’œuvre         │
+             │   (DSP, radio, TV, plateformes, archives)         │
+             └──────────────────────────────────────────────────┘
+                                      │
+                                      ▼
+        ┌─────────────────────────────────────────────────────────────┐
+        │           Vérification hors-ligne ou serveur                │
+        │  • validation UID_AUTH                                      │
+        │  • validation manifeste JSON-LD                             │
+        │  • contrôle d’intégrité                                     │
+        │  • conformité AI Act / TDM opt-out                          │
+        └─────────────────────────────────────────────────────────────┘
+                                      │
+                                      ▼
+                   ┌─────────────────────────────────────┐
+                   │      Journalisation / Preuve         │
+                   │   (registre interne ou OGC/CMO)      │
+                   └─────────────────────────────────────┘
+
+
+
 For institutional pilots (EU or US), contact:
 
 romain@lockdna.tech
