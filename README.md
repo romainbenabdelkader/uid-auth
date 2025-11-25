@@ -110,9 +110,8 @@ AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4
 Each work can be accompanied by a JSON-LD manifest using the AI-rights context.
 
 Audio example:
-
 {
-  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/schema/ai-rights-context.jsonld",
+  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/context/schema/ai-rights-context.jsonld",
   "@type": "CreativeWork",
 
   "uid_auth": "FR-2025-AUTH-MUS-000001",
