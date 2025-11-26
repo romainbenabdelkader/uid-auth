@@ -1,5 +1,16 @@
 🇺🇸 UID_AUTH - U.S. Version
+UID_AUTH-US: A neutral provenance & AI-rights manifest for creative works
 
+For CMOs (ASCAP, BMI, SESAC), DSPs and AI providers who need to:
+- prove origin of works independently of platforms and metadata,
+- respect human/AI origin disclosure,
+- honour AI-training opt-outs (or opt-ins),
+- reduce legal friction around generative AI.
+
+UID_AUTH provides:
+- a sovereign, verifiable identifier for each work,
+- a machine-readable JSON-LD manifest (origin, rights, hashes),
+- compatibility with both EU AI Act logic and US copyright/DMCA frameworks.
 Open Standard for Creative Works Traceability (U.S. Edition)
 Compliance Ready for U.S. Copyright Law, DMCA, and Fair Use Challenges
 
