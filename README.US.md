@@ -127,9 +127,9 @@ Compatible with:
 •	AI-Act-style manifests (EU version)
 
 
-License
-
-MIT License Open, free, neutral
+License  
+Apache-2.0 License  
+Open, free, neutral
 
 Next Steps
 
