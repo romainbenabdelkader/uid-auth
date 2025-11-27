@@ -237,4 +237,4 @@ Ce standard est publié sous licence Apache 2.0, permettant :
 10. Contact
 
 Pour toute question institutionnelle ou collaboration :
-romain@lockdna.tech
+romain_ee@yahoo.fr
