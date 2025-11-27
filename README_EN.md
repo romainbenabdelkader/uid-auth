@@ -10,7 +10,7 @@ UID_AUTH is a sovereign, verifiable, and interoperable identifier designed to pr
 
 •	AI-Act–ready traceability for creative works (music, video, image, text)
 
-(Note: Full multimodal implementation — image, video, text — is planned in the standard, while the initial deployments focus on musical works.)
+(Note: Full multimodal implementation image, video, text — is planned in the standard, while the initial deployments focus on musical works.)
 
 UID_AUTH is an open, minimal and extensible standard.
 Each institution remains fully sovereign in how it uses and integrates it
