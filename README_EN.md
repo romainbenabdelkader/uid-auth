@@ -160,7 +160,9 @@ UID_AUTH coexists seamlessly with existing identifiers:
 It complements (does not replace) these standards by adding:
 
 👉 verifiable origin
+
 👉 cryptographic integrity
+
 👉 AI Act transparency layer
 
 
@@ -211,9 +213,13 @@ uid-auth/
 8.  Standard Status
     
 Status	Description
+
 🟢 Stable	UID_AUTH v1.0 released
+
 🟡 Implementations	Reference libraries in development
+
 🔵 Pilots	Institutional pilots (CMOs & cultural institutions)
+
 
 9. 📜 License
 
@@ -230,4 +236,4 @@ This standard is published under the Apache 2.0 License, allowing:
 10. Contact
 
 For institutional inquiries or collaboration:
-romain@lockdna.tech
+romain_ee@yahoo.fr
