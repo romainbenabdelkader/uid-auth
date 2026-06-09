@@ -89,7 +89,7 @@
           "description": "Juridiction applicable (ex : 'EU', 'FR', 'US')."
         }
       },
-      "required": ["ai_training"]
+      "required": ["ai_training", "tdm_opt_out"]
     },
 
     "hash": {
