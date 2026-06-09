@@ -1,240 +1,217 @@
-🇫🇷 README  UID_AUTH
+# UID_AUTH
 
-Standard ouvert de preuve d’origine et de traçabilité des œuvres (v1.0)
+Standard ouvert d'identification, de preuve d'origine et de tracabilite des oeuvres creatives.
 
-UID_AUTH est un identifiant souverain, vérifiable et interopérable conçu pour fournir :
+UID_AUTH definit un identifiant souverain, verifiable et interoperable pour les oeuvres creatives. Il fournit une couche minimale permettant de relier une oeuvre a une declaration d'origine, un horodatage, un hash d'integrite et des signaux lisibles par machine.
 
-•	une preuve d’origine fiable
+> UID_AUTH identifie et structure une declaration. Il ne decide pas la propriete juridique, la contrefacon ou la responsabilite.
 
-•	une intégrité cryptographique indépendante
+## Objectif
 
-•	une traçabilité AI Act-ready des œuvres créatives (musique, vidéo, image, texte)
+UID_AUTH fournit trois garanties techniques:
 
-UID_AUTH est un standard ouvert, évolutif et minimaliste.
-Chaque institution reste entièrement souveraine dans son usage et son intégration
+- preuve d'origine declarative
+- integrite cryptographique via hash `sha256`
+- signaux de transparence pour l'IA et le TDM opt-out
 
-Ce protocole peut être utilisé par :
+Le standard peut etre utilise par:
 
-•	les sociétés de gestion collective (SACEM, SOCAN, PRS, GEMA, ASCAP…)
+- societes de gestion collective
+- institutions culturelles
+- DSP et plateformes de distribution
+- plateformes IA
+- editeurs, producteurs et labels
+- createurs independants
 
-•	les institutions culturelles
+## Format Officiel
 
-•	les DSP (Spotify, Apple Music, YouTube…)
+Format UID_AUTH v1.0:
 
-•	les plateformes IA
+```text
+COUNTRY.YEAR.AUTH.CATEGORY.SEQUENCE
+```
 
-•	les éditeurs / producteurs
+Exemple:
 
-•	les créateurs individuels
+```text
+FR-2025-AUTH-MUS-000001
+```
 
-UID_AUTH est un standard ouvert, neutre, sans dépendance commerciale, intégrable dans tout écosystème existant
+Segments:
 
+| Segment | Description |
+| --- | --- |
+| `COUNTRY` | Code pays ISO alpha-2, ex. `FR`, `US`, `CA` |
+| `YEAR` | Annee de declaration |
+| `AUTH` | Prefixe fixe du standard |
+| `CATEGORY` | Categorie creative, ex. `MUS`, `VID`, `IMG`, `TXT` |
+| `SEQUENCE` | Sequence numerique a 6 chiffres |
 
+UID_AUTH ne remplace pas ISRC, ISWC, UPC, EAN, DDEX ou EIDR. Il ajoute une couche d'identification, d'origine et d'integrite.
 
-1. Objectifs du standard
+## Manifeste JSON
 
-UID_AUTH fournit trois garanties essentielles :
+Exemple minimal:
 
-✔ 1. Preuve d’origine
-
-Un identifiant unique, horodaté, généré au moment de la création et vérifiable hors-ligne.
-
-✔ 2. Intégrité cryptographique
-
-Un hash indépendant (sha3-256) permettant de vérifier qu’une œuvre n’a pas été modifiée.
-
-✔ 3. Transparence AI Act
-
-Un manifeste JSON-LD indiquant les conditions d’usage :
-
-•	entraînement IA (autorisé / interdit / restreint)
-
-•	TDM opt-out
-
-•	origine humaine ou générée
-
-•	transparence machine-readable
-
-
-
-2. Structure du protocole UID_AUTH
-
-Format officiel (v1.0) :
-
-AUTH.TIMESTAMP.ALGORITHM.VERSION.RANDOM.CHECKSUM
-
-Exemple
-
-AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4
-
-Détail des segments
-Segment	Description
-AUTH	Préfixe du standard
-TIMESTAMP	Horodatage ISO 8601 UTC
-ALGORITHM	sha3-256
-VERSION	Version du protocole (v1)
-RANDOM	Aléa Base58 (8+ caractères)
-CHECKSUM	Contrôle d’intégrité Base58 (6+ caractères)
-
-UID_AUTH ne remplace pas ISRC / ISWC :
-il ajoute la couche de preuve d’origine, manquante dans les standards existants
-
-
-
-3. Exemple complet (JSON)
-
-Fichier : examples/uid_auth_example.json
-
+```json
 {
-  "uid_auth": "AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4",
+  "uid_auth": "FR-2025-AUTH-MUS-000001",
   "spec_version": "1.0",
+  "issued_at": "2025-11-11T10:30:00Z",
   "media_type": "audio/wav",
-  "hash": {
-    "algorithm": "sha3-256",
-    "value": "EXAMPLE-AUDIO-HASH"
-  },
-  "issued_at": "2025-11-11T00:40:07Z",
-  "issuer": {
-    "name": "AUTHENTICA",
-    "type": "IdentityAuthority"
-  }
-}
-
-4.  Manifeste JSON-LD (AI Act-ready)
-
-Chaque œuvre peut être accompagnée d’un manifeste conforme au vocabulaire JSON-LD
-
-Fichier : examples/manifest_example.jsonld
-
-{
-  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/context/schema/ai-rights-context.jsonld",
-  "@type": "CreativeWork",
-
-  "uid_auth": "AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4",
-  "spec_version": "1.0",
-  "media_type": "audio/wav",
-
   "name": "Example Audio Work",
   "creator": "Anonymous",
   "origin": "human",
-
   "rights": {
     "ai_training": "prohibited",
-    "tdm_opt_out": true
+    "tdm_opt_out": true,
+    "jurisdiction": "EU"
   },
-
   "hash": {
-    "algorithm": "sha3-256",
-    "value": "EXAMPLE-AUDIO-HASH"
+    "algorithm": "sha256",
+    "value": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
-
-  "issued_at": "2025-11-11T00:40:07Z",
-
   "issuer": {
     "name": "AUTHENTICA",
     "type": "IdentityAuthority"
   }
 }
+```
 
-5. 🔗 Interopérabilité
+Fichier de reference:
 
-UID_AUTH coexiste avec les identifiants existants :
+```text
+examples/uid_auth_example.json
+```
 
-•	ISRC (enregistrements)
+## Manifeste JSON-LD
 
-•	ISWC (œuvres)
+Un manifeste JSON-LD peut ajouter un contexte machine-readable pour les droits IA et TDM.
 
-•	UPC / EAN
+Fichier de reference:
 
-•	DDEX
+```text
+examples/manifest_example.jsonld
+```
 
-•	EIDR (audiovisuel)
+Contexte JSON-LD:
 
-Il complète, sans remplacer :
+```text
+context/schema/ai-rights-context.jsonld
+```
 
- il fournit la preuve d’origine + l’intégrité cryptographique que ces standards n’incluent pas
+## Schema
 
+Le schema JSON officiel est disponible ici:
 
+```text
+schema/uid_auth_schema.json
+```
 
-6. Gouvernance du standard
+Il verifie notamment:
 
-UID_AUTH est un standard évolutif, sous gouvernance institutionnelle :
+- le format `uid_auth`
+- l'origine declaree: `human`, `ai`, `hybrid`
+- l'horodatage ISO 8601
+- l'autorite emettrice
+- les droits IA/TDM
+- le hash `sha256`
 
-•	processus de RFC (Request for Comments) pour chaque évolution
+## Validation Locale
 
-•	consultation des OGC, DSP et institutions culturelles
+Une validation minimale des exemples est fournie:
 
-•	comité technique multi-acteurs
+```bash
+python scripts/validate_examples.py
+```
 
-•	compatibilité ascendante garantie
+ou:
 
+```bash
+python3 scripts/validate_examples.py
+```
 
+Cette validation ne remplace pas un validateur JSON Schema complet. Elle sert a verifier rapidement que les exemples du depot restent coherents avec le format UID_AUTH v1.0.
 
-7. Conformité réglementaire
+## Interoperabilite
 
+UID_AUTH coexiste avec les identifiants existants:
 
-RGPD
+- ISRC
+- ISWC
+- UPC / EAN
+- DDEX
+- EIDR
 
-•	aucune donnée personnelle requise
+Il complete ces standards avec:
 
-•	traitement anonymisé
+- un identifiant d'origine
+- une preuve d'integrite
+- des signaux de transparence IA/TDM
 
-•	vérification hors-ligne possible
+## Relation Avec AURA
 
-AI Act
+UID_AUTH peut etre utilise comme identifiant d'oeuvre dans un manifeste AURA, mais il reste independant.
 
-Le manifeste JSON-LD fournit tous les signaux requis :
+Exemple:
 
-•	origine (humaine / générée)
+```json
+{
+  "uid_auth": "FR-2025-AUTH-MUS-000001",
+  "aura_id": "AURA-LOCAL-2026-000001-TEST",
+  "asset_hash": "..."
+}
+```
 
-•	conditions d’usage
+Dans ce modele:
 
-•	TDM opt-out
+- `uid_auth` identifie l'oeuvre
+- `aura_id` identifie la preuve AURA
+- `asset_hash` verifie l'integrite du fichier
+- la signature AURA verifie l'integrite du manifeste
 
-•	transparence machine-readable
+## Ce Que UID_AUTH Ne Fait Pas
 
+UID_AUTH ne fournit pas:
 
+- preuve juridique absolue de propriete
+- decision automatique de contrefacon
+- surveillance d'usage
+- sanction automatique
+- DRM
+- watermarking
+- reconnaissance de contenu
 
-8. Arborescence du repository
+UID_AUTH fournit un artefact technique verifiable. La qualification juridique releve du droit, d'un audit, d'un regulateur ou d'une juridiction competente.
 
+## Arborescence
+
+```text
 uid-auth/
-│
 ├── README.md
+├── README_EN.md
+├── README.US.md
 ├── LICENSE
-│
+├── CHANGELOG.md
+├── version.txt
 ├── schema/
 │   └── uid_auth_schema.json
-│
 ├── context/
-│   └── ai-rights-context.jsonld
-│
+│   ├── context.jsonld
+│   └── schema/
+│       └── ai-rights-context.jsonld
 ├── examples/
 │   ├── uid_auth_example.json
 │   ├── manifest_example.jsonld
 │   └── manifest_us_example.jsonld
-│
-└── version.txt
+└── scripts/
+    └── validate_examples.py
+```
 
-9. Statut du standard
+## Statut
 
-Statut	Description
-🟢 Stable	UID_AUTH v1.0 publié
-🟡 Implémentations	Librairies de référence en cours
-🔵 Pilotes	Pilotes institutionnels (OGC & Institutions culturelles)
+UID_AUTH v1.0 est publie comme standard ouvert minimal. Les implementations de reference peuvent evoluer separement.
 
-10. Licence
+## Licence
 
-
-Ce standard est publié sous licence Apache 2.0, permettant :
-
-•	usage libre
-
-•	implémentation publique ou commerciale
-
-•	contributions ouvertes
-
-
-10. Contact
-
-Pour toute question institutionnelle ou collaboration :
-romain_ee@yahoo.fr
+Apache License 2.0

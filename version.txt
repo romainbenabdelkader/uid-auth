@@ -1,5 +1,5 @@
 UID_AUTH Standard
-Version: 1.0
+Version: 1.0.1
 Release date: 2025-11-11
 Status: Stable
 Namespace: AUTH

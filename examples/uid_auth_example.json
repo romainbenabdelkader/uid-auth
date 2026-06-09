@@ -3,9 +3,17 @@
   "spec_version": "1.0",
   "issued_at": "2025-11-11T10:30:00Z",
   "media_type": "audio/wav",
+  "name": "Example Audio Work",
+  "creator": "Anonymous",
+  "origin": "human",
+  "rights": {
+    "ai_training": "prohibited",
+    "tdm_opt_out": true,
+    "jurisdiction": "EU"
+  },
   "hash": {
-    "algorithm": "sha3-256",
-    "value": "EXAMPLE-AUDIO-HASH"
+    "algorithm": "sha256",
+    "value": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
   "issuer": {
     "name": "AUTHENTICA",

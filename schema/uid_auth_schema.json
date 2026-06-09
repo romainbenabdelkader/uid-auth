@@ -1,51 +1,62 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "UID_AUTH Manifest Schema",
-  "description": "Schéma du manifest UID_AUTH pour la preuve d'origine, l'intégrité, et les signaux IA / TDM conformes AI Act.",
+  "description": "Schema du manifeste UID_AUTH pour l'identification, la preuve d'origine, l'integrite et les signaux IA/TDM.",
   "type": "object",
 
   "properties": {
 
     "uid_auth": {
       "type": "string",
-      "pattern": "^[A-Z]{2}-[0-9]{4}-AUTH-[0-9]{6}$",
-      "description": "Identifiant souverain UID_AUTH (ex: FR-2025-AUTH-000001)."
+      "pattern": "^[A-Z]{2}-[0-9]{4}-AUTH-[A-Z]{3}-[0-9]{6}$",
+      "description": "Identifiant souverain UID_AUTH (ex: FR-2025-AUTH-MUS-000001)."
+    },
+
+    "spec_version": {
+      "type": "string",
+      "const": "1.0",
+      "description": "Version du standard UID_AUTH."
+    },
+
+    "media_type": {
+      "type": "string",
+      "description": "Type media de l'oeuvre, par exemple audio/wav, image/png, video/mp4 ou text/plain."
     },
 
     "name": {
       "type": "string",
-      "description": "Nom de l’œuvre (optionnel mais recommandé)."
+      "description": "Nom de l'oeuvre."
     },
 
     "creator": {
       "type": "string",
-      "description": "Nom ou identifiant public du créateur de l’œuvre."
+      "description": "Nom ou identifiant public du createur de l'oeuvre."
     },
 
     "origin": {
       "type": "string",
       "enum": ["human", "ai", "hybrid"],
-      "description": "Déclaration d’origine de l’œuvre (obligation IA Act : transparency signal)."
+      "description": "Declaration d'origine de l'oeuvre."
     },
 
     "issued_at": {
       "type": "string",
       "format": "date-time",
-      "description": "Horodatage ISO 8601 indiquant la date de génération de l’UID_AUTH."
+      "description": "Horodatage ISO 8601 indiquant la date de generation de l'UID_AUTH."
     },
 
     "issuer": {
       "type": "object",
-      "description": "Autorité ayant délivré l’UID_AUTH.",
+      "description": "Autorite ayant delivre l'UID_AUTH.",
       "properties": {
         "name": {
           "type": "string",
-          "description": "Nom de l’autorité (ex : AUTHENTICA)."
+          "description": "Nom de l'autorite, ex. AUTHENTICA."
         },
         "type": {
           "type": "string",
           "enum": ["IdentityAuthority", "CollectingSociety", "Label", "TrustedEntity"],
-          "description": "Typologie de l’autorité émettrice."
+          "description": "Typologie de l'autorite emettrice."
         }
       },
       "required": ["name", "type"]
@@ -53,24 +64,24 @@
 
     "rights": {
       "type": "object",
-      "description": "Bloc décrivant les droits et restrictions liés à l’œuvre, notamment IA / TDM.",
+      "description": "Bloc decrivant les droits et restrictions lies a l'oeuvre, notamment IA/TDM.",
       "properties": {
 
         "ai_training": {
           "type": "string",
           "enum": ["prohibited", "allowed", "restricted", "conditional"],
-          "description": "Statut de l’œuvre pour l’entraînement IA (AI Act transparency signal)."
+          "description": "Statut de l'oeuvre pour l'entrainement IA."
         },
 
         "training_conditions": {
           "type": "string",
           "format": "uri",
-          "description": "URL vers les conditions détaillées (opt-in, restrictions, contrats)."
+          "description": "URL vers les conditions detaillees."
         },
 
         "tdm_opt_out": {
           "type": "boolean",
-          "description": "Activation du droit d’opposition au Text and Data Mining (Directive UE 2019/790)."
+          "description": "Activation du droit d'opposition au Text and Data Mining."
         },
 
         "jurisdiction": {
@@ -83,16 +94,17 @@
 
     "hash": {
       "type": "object",
-      "description": "Preuve d’intégrité cryptographique.",
+      "description": "Preuve d'integrite cryptographique.",
       "properties": {
         "algorithm": {
           "type": "string",
           "enum": ["sha256"],
-          "description": "Algorithme utilisé pour le hash (par défaut SHA-256)."
+          "description": "Algorithme utilise pour le hash."
         },
         "value": {
           "type": "string",
-          "description": "Valeur hexadécimale du hash SHA-256."
+          "pattern": "^[a-fA-F0-9]{64}$",
+          "description": "Valeur hexadecimale du hash SHA-256."
         }
       },
       "required": ["algorithm", "value"]
@@ -101,6 +113,7 @@
 
   "required": [
     "uid_auth",
+    "spec_version",
     "origin",
     "issued_at",
     "issuer",
