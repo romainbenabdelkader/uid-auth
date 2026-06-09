@@ -3,7 +3,7 @@
 ## v1.0.1 – Repository coherence update
 
 - Alignement du README, du schema et des exemples sur le format UID_AUTH v1.0:
-  `COUNTRY.YEAR.AUTH.CATEGORY.SEQUENCE`
+  `COUNTRY-YEAR-AUTH-CATEGORY-SEQUENCE`
 - Standardisation des exemples sur `sha256`
 - Correction des exemples JSON et JSON-LD pour correspondre au schema
 - Ajout d'un script minimal de validation locale
