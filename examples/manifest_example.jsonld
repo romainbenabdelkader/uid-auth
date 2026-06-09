@@ -12,12 +12,13 @@
 
   "rights": {
     "ai_training": "prohibited",
-    "tdm_opt_out": true
+    "tdm_opt_out": true,
+    "jurisdiction": "EU"
   },
 
   "hash": {
     "algorithm": "sha256",
-    "value": "EXAMPLE-AUDIO-HASH"
+    "value": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
 
   "issued_at": "2025-11-11T00:40:07Z",

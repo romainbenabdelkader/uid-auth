@@ -1,241 +1,193 @@
-🇬🇧 README  UID_AUTH
+# UID_AUTH
 
-Open Standard for Origin Proof & Creative Works Traceability (v1.0)
+Open standard for creative work identification, origin declaration and traceability.
 
-UID_AUTH is a sovereign, verifiable, and interoperable identifier designed to provide:
+UID_AUTH defines a sovereign, verifiable and interoperable identifier for creative works. It provides a minimal layer for linking a work to an origin declaration, timestamp, integrity hash and machine-readable rights signals.
 
-•	reliable proof of origin
+> UID_AUTH identifies and structures a declaration. It does not decide legal ownership, infringement or liability.
 
-•	independent cryptographic integrity
+## Purpose
 
-•	AI-Act–ready traceability for creative works (music, video, image, text)
+UID_AUTH provides three technical guarantees:
 
-(Note: Full multimodal implementation image, video, text is planned in the standard, while the initial deployments focus on musical works.)
+- declarative proof of origin
+- cryptographic integrity through `sha256`
+- AI and TDM opt-out transparency signals
 
-UID_AUTH is an open, minimal and extensible standard.
-Each institution remains fully sovereign in how it uses and integrates it
+The standard can be used by:
 
-This protocol can be used by:
+- collective management organizations
+- cultural institutions
+- DSPs and distribution platforms
+- AI platforms
+- publishers, producers and labels
+- independent creators
 
-•	Collective Management Organizations (CMOs): SACEM, SOCAN, PRS, GEMA, ASCAP…
+## Official Format
 
-•	Cultural institutions
+UID_AUTH v1.0 format:
 
-•	DSPs (Spotify, Apple Music, YouTube…)
+```text
+COUNTRY.YEAR.AUTH.CATEGORY.SEQUENCE
+```
 
-•	AI platforms
+Example:
 
-•	Publishers & producers
+```text
+FR-2025-AUTH-MUS-000001
+```
 
-•	Independent creators
+Segments:
 
-UID_AUTH is an open, neutral, vendor-independent standard that can be integrated into any existing ecosystem.
+| Segment | Description |
+| --- | --- |
+| `COUNTRY` | ISO alpha-2 country code, e.g. `FR`, `US`, `CA` |
+| `YEAR` | Declaration year |
+| `AUTH` | Fixed standard prefix |
+| `CATEGORY` | Creative category, e.g. `MUS`, `VID`, `IMG`, `TXT` |
+| `SEQUENCE` | Six-digit numeric sequence |
 
+UID_AUTH does not replace ISRC, ISWC, UPC, EAN, DDEX or EIDR. It adds an identification, origin and integrity layer.
 
+## JSON Manifest
 
-1.  Standard Objectives
+Minimal example:
 
-UID_AUTH provides three essential guarantees:
-
-✔ 1. Proof of Origin
-
-A unique, timestamped identifier generated at the moment of declaration and verifiable offline
-
-✔ 2. Cryptographic Integrity
-
-An independent sha3-256 hash ensuring the work has not been altered
-
-✔ 3. AI Act Transparency
-
-A JSON-LD manifest describing usage conditions:
-
-•	AI training (allowed / prohibited / restricted)
-
-•	TDM opt-out
-
-•	human vs. AI origin
-
-•	machine-readable transparency (AI Act compliance)
-
-
-
-2. UID_AUTH Protocol Structure
-
-Official format (v1.0):
-
-AUTH.TIMESTAMP.ALGORITHM.VERSION.RANDOM.CHECKSUM
-
-Example
-
-AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4
-
-Segment details
-
-Segment	Description
-
-AUTH	Standard prefix
-
-TIMESTAMP	ISO-8601 UTC timestamp
-
-ALGORITHM	sha3-256
-
-VERSION	Protocol version (v1)
-
-RANDOM	Base58 random string (8+ chars)
-
-CHECKSUM	Base58 integrity checksum (6+ chars)
-
-UID_AUTH does not replace ISRC/ISWC.
-It adds the missing layer: verifiable origin & integrity
-
-
-
-3. Full JSON Example
-
-File: examples/uid_auth_example.json
-
+```json
 {
-  "uid_auth": "AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4",
+  "uid_auth": "FR-2025-AUTH-MUS-000001",
   "spec_version": "1.0",
+  "issued_at": "2025-11-11T10:30:00Z",
   "media_type": "audio/wav",
-  "hash": {
-    "algorithm": "sha3-256",
-    "value": "EXAMPLE-AUDIO-HASH"
-  },
-  "issued_at": "2025-11-11T00:40:07Z",
-  "issuer": {
-    "name": "AUTHENTICA",
-    "type": "IdentityAuthority"
-  }
-}
-
-4. 🧾 JSON-LD Manifest (AI Act-Ready)
-
-Each work can be accompanied by a JSON-LD manifest following the AI Rights vocabulary.
-
-File: examples/manifest_example.jsonld
-
-{
-  "@context": "https://raw.githubusercontent.com/romainbenabdelkader/uid-auth/main/context/schema/ai-rights-context.jsonld",
-  "@type": "CreativeWork",
-
-  "uid_auth": "AUTH.2025-11-11T00:40:07Z.sha3-256.v1.89fT1kZa.Qp9eD4",
-  "spec_version": "1.0",
-  "media_type": "audio/wav",
-
   "name": "Example Audio Work",
   "creator": "Anonymous",
   "origin": "human",
-
   "rights": {
     "ai_training": "prohibited",
-    "tdm_opt_out": true
+    "tdm_opt_out": true,
+    "jurisdiction": "EU"
   },
-
   "hash": {
-    "algorithm": "sha3-256",
-    "value": "EXAMPLE-AUDIO-HASH"
+    "algorithm": "sha256",
+    "value": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
   },
-
-  "issued_at": "2025-11-11T00:40:07Z",
-
   "issuer": {
     "name": "AUTHENTICA",
     "type": "IdentityAuthority"
   }
 }
+```
 
-5. Interoperability
+Reference file:
 
-UID_AUTH coexists seamlessly with existing identifiers:
+```text
+examples/uid_auth_example.json
+```
 
-•	ISRC (recordings)
+## JSON-LD Manifest
 
-•	ISWC (works)
+A JSON-LD manifest can add machine-readable context for AI and TDM rights.
 
-•	UPC / EAN
+Reference file:
 
-•	DDEX
+```text
+examples/manifest_example.jsonld
+```
 
-•	EIDR (audiovisual)
+JSON-LD context:
 
-It complements (does not replace) these standards by adding:
+```text
+context/schema/ai-rights-context.jsonld
+```
 
-👉 verifiable origin
+## Schema
 
-👉 cryptographic integrity
+The official JSON Schema is available at:
 
-👉 AI Act transparency layer
+```text
+schema/uid_auth_schema.json
+```
 
+It checks:
 
-6. Regulatory Compliance
+- `uid_auth` format
+- declared origin: `human`, `ai`, `hybrid`
+- ISO 8601 timestamp
+- issuing authority
+- AI/TDM rights
+- `sha256` hash
 
-GDPR
+## Local Validation
 
-•	no personal data required
+Run the minimal example validator:
 
-•	fully anonymized metadata
+```bash
+python scripts/validate_examples.py
+```
 
-•	offline verification possible
+or:
 
-AI Act
+```bash
+python3 scripts/validate_examples.py
+```
 
-The JSON-LD manifest provides required transparency signals:
+This does not replace a full JSON Schema validator. It keeps repository examples aligned with UID_AUTH v1.0.
 
-•	human / AI origin
+## Interoperability
 
-•	usage conditions
+UID_AUTH coexists with existing identifiers:
 
-•	TDM opt-out
+- ISRC
+- ISWC
+- UPC / EAN
+- DDEX
+- EIDR
 
-•	machine-readable compliance markers
+It complements them with:
 
+- an origin identifier
+- integrity proof
+- AI/TDM transparency signals
 
+## Relationship With AURA
 
-7.  Repository Structure
+UID_AUTH can be used as a work identifier inside an AURA manifest, but remains independent.
 
-uid-auth/
-│
-├── README.md
-├── LICENSE
-│
-├── schema/
-│   └── uid_auth_schema.json
-│
-├── context/
-│   └── ai-rights-context.jsonld
-│
-├── examples/
-│   ├── uid_auth_example.json
-│   ├── manifest_example.jsonld
-│   └── manifest_us_example.jsonld
-│
-└── version.txt
+Example:
 
-8.  Standard Status
-    
-Status	Description
+```json
+{
+  "uid_auth": "FR-2025-AUTH-MUS-000001",
+  "aura_id": "AURA-LOCAL-2026-000001-TEST",
+  "asset_hash": "..."
+}
+```
 
-🟢 Stable	UID_AUTH v1.0 released
+In this model:
 
-🟡 Implementations	Reference libraries in development
+- `uid_auth` identifies the work
+- `aura_id` identifies the AURA proof
+- `asset_hash` verifies file integrity
+- the AURA signature verifies manifest integrity
 
-🔵 Pilots	Institutional pilots (CMOs & cultural institutions)
+## Non-Goals
 
+UID_AUTH does not provide:
 
-9. 📜 License
+- absolute legal proof of ownership
+- automated infringement decisions
+- usage monitoring
+- automatic sanctions
+- DRM
+- watermarking
+- content recognition
 
-This standard is published under the Apache 2.0 License, allowing:
+UID_AUTH provides a verifiable technical artefact. Legal qualification belongs to law, audit, regulators or competent courts.
 
-•	free usage
+## Status
 
-•	public or commercial implementation
+UID_AUTH v1.0 is published as a minimal open standard. Reference implementations may evolve separately.
 
-•	open contributions
+## License
 
-
-
-10. Contact
-
-For institutional inquiries or collaboration:
-romain_ee@yahoo.fr
+Apache License 2.0
