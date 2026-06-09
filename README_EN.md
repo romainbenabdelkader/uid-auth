@@ -28,7 +28,7 @@ The standard can be used by:
 UID_AUTH v1.0 format:
 
 ```text
-COUNTRY.YEAR.AUTH.CATEGORY.SEQUENCE
+COUNTRY-YEAR-AUTH-CATEGORY-SEQUENCE
 ```
 
 Example:

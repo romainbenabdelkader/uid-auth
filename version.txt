@@ -1,5 +1,5 @@
 UID_AUTH Standard
-Version: 1.0.1
+Version: 1.0.1 (repository packaging; the manifest spec_version remains 1.0)
 Release date: 2025-11-11
 Status: Stable
 Namespace: AUTH

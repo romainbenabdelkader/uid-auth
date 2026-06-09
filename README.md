@@ -28,7 +28,7 @@ Le standard peut etre utilise par:
 Format UID_AUTH v1.0:
 
 ```text
-COUNTRY.YEAR.AUTH.CATEGORY.SEQUENCE
+COUNTRY-YEAR-AUTH-CATEGORY-SEQUENCE
 ```
 
 Exemple:
@@ -131,7 +131,7 @@ ou:
 python3 scripts/validate_examples.py
 ```
 
-Cette validation ne remplace pas un validateur JSON Schema complet. Elle sert a verifier rapidement que les exemples du depot restent coherents avec le format UID_AUTH v1.0.
+Lorsque la bibliotheque optionnelle `jsonschema` est installee (`pip install jsonschema`), les exemples sont valides directement contre `schema/uid_auth_schema.json`, qui fait foi. Sinon, un controle equivalent en pure bibliotheque standard est utilise. Cette validation sert a verifier que les exemples du depot restent coherents avec le format UID_AUTH v1.0.
 
 ## Interoperabilite
 
