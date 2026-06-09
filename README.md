@@ -149,6 +149,23 @@ Il complete ces standards avec:
 - une preuve d'integrite
 - des signaux de transparence IA/TDM
 
+## RGPD Et Donnees Personnelles
+
+UID_AUTH est concu selon un principe de minimisation des donnees.
+
+Le standard ne requiert pas de donnee personnelle pour fonctionner. Les champs comme `creator` ou `issuer.name` peuvent contenir un nom public, un pseudonyme, un identifiant institutionnel ou une valeur neutre comme `Anonymous`.
+
+Principes RGPD:
+
+- aucune donnee personnelle obligatoire
+- verification possible hors ligne
+- hash cryptographique du fichier plutot que copie du contenu
+- usage possible avec pseudonyme ou identifiant public
+- pas de surveillance d'usage integree
+- pas de decision automatisee integree
+
+Si une implementation choisit d'ajouter des donnees personnelles, elle reste responsable de sa propre base legale, de l'information des personnes concernees, de la duree de conservation et des droits RGPD applicables.
+
 ## Relation Avec AURA
 
 UID_AUTH peut etre utilise comme identifiant d'oeuvre dans un manifeste AURA, mais il reste independant.

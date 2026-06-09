@@ -84,6 +84,21 @@ UID_AUTH can coexist with:
 - C2PA / Content Credentials
 - platform rights-management systems
 
+## Privacy And Personal Data
+
+UID_AUTH is designed around data minimization.
+
+The standard does not require personal data to work. Fields such as `creator` or `issuer.name` may contain a public name, pseudonym, institutional identifier or neutral value such as `Anonymous`.
+
+UID_AUTH itself does not provide:
+
+- usage monitoring
+- automated legal decisions
+- platform enforcement
+- personal-data collection requirements
+
+Organizations implementing UID_AUTH remain responsible for their own privacy, data-retention and legal compliance obligations.
+
 ## License
 
 Apache License 2.0

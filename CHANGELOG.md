@@ -8,6 +8,7 @@
 - Correction des exemples JSON et JSON-LD pour correspondre au schema
 - Ajout d'un script minimal de validation locale
 - Clarification de la relation entre UID_AUTH et AURA
+- Clarification RGPD/GDPR: minimisation des donnees et absence de donnees personnelles obligatoires
 - Nettoyage des README francais, anglais et profil U.S.
 
 ## v1.0 – 11 novembre 2025

@@ -30,7 +30,7 @@
 
     "creator": {
       "type": "string",
-      "description": "Nom ou identifiant public du createur de l'oeuvre."
+      "description": "Nom public, pseudonyme, identifiant institutionnel ou valeur neutre. Ce champ est optionnel pour respecter la minimisation RGPD."
     },
 
     "origin": {
@@ -51,7 +51,7 @@
       "properties": {
         "name": {
           "type": "string",
-          "description": "Nom de l'autorite, ex. AUTHENTICA."
+          "description": "Nom public, pseudonyme ou identifiant institutionnel de l'autorite emettrice."
         },
         "type": {
           "type": "string",

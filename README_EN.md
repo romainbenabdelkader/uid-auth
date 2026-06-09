@@ -149,6 +149,23 @@ It complements them with:
 - integrity proof
 - AI/TDM transparency signals
 
+## GDPR And Personal Data
+
+UID_AUTH is designed around data minimization.
+
+The standard does not require personal data to work. Fields such as `creator` or `issuer.name` may contain a public name, pseudonym, institutional identifier or neutral value such as `Anonymous`.
+
+GDPR principles:
+
+- no personal data is mandatory
+- offline verification is possible
+- file content is represented by a cryptographic hash, not copied into the manifest
+- pseudonymous or public identifiers can be used
+- no built-in usage monitoring
+- no built-in automated decision-making
+
+If an implementation chooses to add personal data, that implementation remains responsible for its own legal basis, transparency notices, retention period and applicable GDPR rights.
+
 ## Relationship With AURA
 
 UID_AUTH can be used as a work identifier inside an AURA manifest, but remains independent.
