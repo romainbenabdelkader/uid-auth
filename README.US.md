@@ -12,6 +12,16 @@ It is designed for creators, publishers, labels, CMOs, DSPs and AI providers who
 
 > UID_AUTH provides a verifiable technical artefact. It does not decide legal ownership, fair use, infringement or liability.
 
+## Architecture
+
+The roles are separate:
+
+- AURA provides neutral technical proof of origin, integrity and verification.
+- UID_AUTH provides the sovereign identifier for the work or asset.
+- AUTHENTICA provides an AI/TDM rights and reservation profile that may carry a `uid_auth`.
+
+This U.S. profile adapts UID_AUTH for U.S. documentation and audit workflows. It does not make AURA or AUTHENTICA mandatory dependencies.
+
 ## U.S. Identifier Example
 
 ```text

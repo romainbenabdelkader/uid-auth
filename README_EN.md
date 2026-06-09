@@ -149,11 +149,17 @@ It complements them with:
 - integrity proof
 - AI/TDM transparency signals
 
-## Relationship With AURA
+## Architecture
 
-UID_AUTH can be used as a work identifier inside an AURA manifest, but remains independent.
+The roles are separate:
 
-Example:
+- AURA provides neutral technical proof of origin, integrity and verification. AURA can verify a manifest, hash or signature without imposing a registry, identifier or rights profile.
+- UID_AUTH provides the sovereign identifier for the work or asset. This repository defines that identifier's format, schema and examples.
+- AUTHENTICA provides an AI/TDM rights and reservation profile. An AUTHENTICA manifest may contain a `uid_auth` and may be referenced or verified by AURA, but it remains a distinct application profile.
+
+UID_AUTH can therefore be used inside an AURA or AUTHENTICA manifest, without mandatory dependency between the three layers.
+
+Combination example:
 
 ```json
 {

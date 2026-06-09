@@ -149,11 +149,17 @@ Il complete ces standards avec:
 - une preuve d'integrite
 - des signaux de transparence IA/TDM
 
-## Relation Avec AURA
+## Architecture
 
-UID_AUTH peut etre utilise comme identifiant d'oeuvre dans un manifeste AURA, mais il reste independant.
+Les roles sont separes:
 
-Exemple:
+- AURA fournit une preuve technique neutre d'origine, d'integrite et de verification. AURA peut verifier un manifeste, un hash ou une signature, sans imposer de registre, d'identifiant ou de profil de droits.
+- UID_AUTH fournit l'identifiant souverain de l'oeuvre ou de l'actif. C'est le role de ce depot: definir le format, le schema et les exemples de l'identifiant.
+- AUTHENTICA fournit un profil de droits et de reserve IA/TDM. Un manifeste AUTHENTICA peut contenir un `uid_auth` et peut etre reference ou verifie par AURA, mais il reste un profil applicatif distinct.
+
+UID_AUTH peut donc etre utilise dans un manifeste AURA ou AUTHENTICA, sans dependance obligatoire entre les trois couches.
+
+Exemple de combinaison:
 
 ```json
 {
