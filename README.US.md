@@ -89,7 +89,7 @@ UID_AUTH can coexist with:
 - ISRC
 - ISWC
 - ISNI
-- ASCAP / BMI / SESAC / MLC workflows
+- U.S. performing-rights organization (PRO) and collective-management workflows
 - DDEX
 - C2PA / Content Credentials
 - platform rights-management systems
