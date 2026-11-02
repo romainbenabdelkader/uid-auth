@@ -133,23 +133,25 @@ Il impose notamment des contraintes de structure sur:
 
 ## Validation Locale
 
-Une validation minimale des exemples est fournie:
+Installer la dependance, puis valider les exemples contre le schema publie:
 
 ```bash
-python scripts/validate_examples.py
-```
-
-ou:
-
-```bash
+python3 -m pip install 'jsonschema>=4,<5'
 python3 scripts/validate_examples.py
 ```
 
-Avec la bibliotheque optionnelle `jsonschema` (`pip install jsonschema`), le
-script utilise `schema/uid_auth_schema.json` sans activer les controles de format
-des dates et URI. Sinon, il applique des controles minimaux en bibliotheque
-standard. Aucun de ces parcours ne recalcule une empreinte de fichier, ne
-verifie une signature ou n'authentifie l'autorite emettrice.
+Le script utilise `schema/uid_auth_schema.json` avec la bibliotheque requise
+`jsonschema`, sans activer les controles de format des dates et URI. Si la
+bibliotheque ne peut pas etre importee, il s'arrete avec le code 2 et ne valide
+aucun exemple. Il renvoie 0 si tous les exemples respectent le schema, ou 1 si
+un exemple est invalide. Il ne recalcule pas les empreintes de fichiers, ne
+verifie aucune signature et n'authentifie pas l'autorite emettrice.
+
+Tests de regression (dependance installee):
+
+```bash
+python3 -m unittest discover -s tests -v
+```
 
 ## Interoperabilite
 
