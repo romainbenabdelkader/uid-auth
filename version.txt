@@ -1,9 +1,13 @@
 UID_AUTH Standard
 Version: 1.0.1 (repository packaging; the manifest spec_version remains 1.0)
-Release date: 2025-11-11
-Status: Stable
+Repository release v1.0.1 published: 2026-06-09
+Release reference: https://github.com/romainbenabdelkader/uid-auth/releases/tag/v1.0.1
+Initial specification date recorded in CHANGELOG.md: 2025-11-11
+Status: Published identifier and metadata format
 Namespace: AUTH
 Scope: Creative Works (audio, image, video, text)
 Format: JSON / JSON-LD
-Compatibility: AI Act, RGPD, JSON Schema, Schema.org
-Maintainer: AUTHENTICA (France)
+Validation: Structure checked against schema/uid_auth_schema.json; see README_EN.md for validation limits
+Legal scope: Use of this format does not by itself establish AI Act or GDPR compliance
+Maintainer: Romain Benabdelkader (repository owner)
+Metadata clarified: 2026-11-02 (documentation only; published tags unchanged)
