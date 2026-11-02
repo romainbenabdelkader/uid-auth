@@ -132,22 +132,24 @@ It imposes structural constraints on:
 
 ## Local Validation
 
-Run the minimal example validator:
+Install the dependency, then validate the examples against the published schema:
 
 ```bash
-python scripts/validate_examples.py
-```
-
-or:
-
-```bash
+python3 -m pip install 'jsonschema>=4,<5'
 python3 scripts/validate_examples.py
 ```
 
-With the optional `jsonschema` library (`pip install jsonschema`), the script
-uses `schema/uid_auth_schema.json` without enabling date and URI format checks.
-Otherwise it uses minimal standard-library checks. Neither path recomputes an
-asset digest, verifies a signature or authenticates issuer authority.
+The script uses `schema/uid_auth_schema.json` with the required `jsonschema`
+library, without enabling date and URI format checks. If the library cannot be
+imported, it exits with code 2 without validating any examples. It returns 0
+when all examples satisfy the schema, or 1 when an example is invalid. It does
+not recompute asset digests, verify signatures or authenticate issuer authority.
+
+Regression tests (dependency installed):
+
+```bash
+python3 -m unittest discover -s tests -v
+```
 
 ## Interoperability
 
