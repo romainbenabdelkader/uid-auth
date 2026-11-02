@@ -16,11 +16,14 @@ It is designed for creators, publishers, labels, CMOs, DSPs and AI providers who
 
 The roles are separate:
 
-- AURA provides neutral technical proof of origin, integrity and verification.
-- UID_AUTH provides the sovereign identifier for the work or asset.
+- AURA defines signed origin declarations and exact-byte asset-integrity evidence.
+- UID_AUTH provides a declared work identifier format and accompanying metadata.
 - AUTHENTICA provides an AI/TDM rights and reservation profile that may carry a `uid_auth`.
 
 This U.S. profile adapts UID_AUTH for U.S. documentation and audit workflows. It does not make AURA or AUTHENTICA mandatory dependencies.
+
+The formats are separate. This profile's standalone example is not a signed
+AURA manifest; see the [format boundaries and current references](ARCHITECTURE.md).
 
 ## U.S. Identifier Example
 
@@ -35,6 +38,10 @@ COUNTRY-YEAR-AUTH-CATEGORY-SEQUENCE
 ```
 
 ## U.S. JSON-LD Example
+
+Fictional structure example. The digest shown is SHA-256 of an empty byte
+sequence; no corresponding audio file or signature is supplied. Passing the
+schema does not establish integrity, identity, authority or a trusted date.
 
 ```json
 {
@@ -93,6 +100,10 @@ UID_AUTH can coexist with:
 - DDEX
 - C2PA / Content Credentials
 - platform rights-management systems
+
+These are integration targets, not demonstrated exchanges or certified
+compatibility. No absence of a UID_AUTH declaration implies permission to use
+a work or absence of rights.
 
 ## License
 

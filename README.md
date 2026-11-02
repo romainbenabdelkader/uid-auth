@@ -1,17 +1,22 @@
 # UID_AUTH
 
-Standard ouvert d'identification, de preuve d'origine et de tracabilite des oeuvres creatives.
+Format ouvert d'identification et de declarations sur les oeuvres creatives.
 
-UID_AUTH definit un identifiant souverain, verifiable et interoperable pour les oeuvres creatives. Il fournit une couche minimale permettant de relier une oeuvre a une declaration d'origine, un horodatage, un hash d'integrite et des signaux lisibles par machine.
+UID_AUTH definit un format d'identifiant accompagne de metadonnees : origine
+declaree, date declaree, empreinte et signaux de droits lisibles par machine.
+Le schema verifie leur structure ; l'identifiant seul ne certifie ni l'origine,
+ni l'identite du declarant, ni l'integrite d'un fichier.
+
+[English documentation](README_EN.md) · [U.S. profile](README.US.md)
 
 > UID_AUTH identifie et structure une declaration. Il ne decide pas la propriete juridique, la contrefacon ou la responsabilite.
 
 ## Objectif
 
-UID_AUTH fournit trois garanties techniques:
+UID_AUTH structure trois types d'informations:
 
-- preuve d'origine declarative
-- integrite cryptographique via hash `sha256`
+- declaration d'origine
+- empreinte declaree `sha256`, a comparer separement aux octets du fichier
 - signaux de transparence pour l'IA et le TDM opt-out
 
 Le standard peut etre utilise par:
@@ -47,11 +52,20 @@ Segments:
 | `CATEGORY` | Categorie creative, ex. `MUS`, `VID`, `IMG`, `TXT` |
 | `SEQUENCE` | Sequence numerique a 6 chiffres |
 
-UID_AUTH ne remplace pas ISRC, ISWC, UPC, EAN, DDEX ou EIDR. Il ajoute une couche d'identification, d'origine et d'integrite.
+UID_AUTH ne remplace pas les identifiants ISRC, ISWC, UPC, EAN ou EIDR, ni les
+formats d'echange DDEX. La forme de l'identifiant n'etablit pas son unicite
+globale : l'attribution des sequences et la prevention des collisions restent
+a organiser par les implementations. Le schema verifie la forme des segments,
+pas l'attribution effective d'un code pays ou d'une categorie.
 
 ## Manifeste JSON
 
 Exemple minimal:
+
+Les exemples sont fictifs. L'empreinte `e3b0c442...b855` ci-dessous et dans les
+trois fichiers d'exemple est le SHA-256 d'une suite d'octets vide ; elle ne
+constitue pas la preuve d'integrite d'un fichier audio. Aucun fichier audio ni
+signature n'est fourni avec ces exemples.
 
 ```json
 {
@@ -108,14 +122,14 @@ Le schema JSON officiel est disponible ici:
 schema/uid_auth_schema.json
 ```
 
-Il verifie notamment:
+Il impose notamment des contraintes de structure sur:
 
 - le format `uid_auth`
 - l'origine declaree: `human`, `ai`, `hybrid`
-- l'horodatage ISO 8601
-- l'autorite emettrice
+- le champ de date declaree `issued_at`
+- les champs d'emetteur declares
 - les droits IA/TDM
-- le hash `sha256`
+- l'algorithme `sha256` et la forme hexadecimale de son empreinte
 
 ## Validation Locale
 
@@ -131,11 +145,15 @@ ou:
 python3 scripts/validate_examples.py
 ```
 
-Lorsque la bibliotheque optionnelle `jsonschema` est installee (`pip install jsonschema`), les exemples sont valides directement contre `schema/uid_auth_schema.json`, qui fait foi. Sinon, un controle equivalent en pure bibliotheque standard est utilise. Cette validation sert a verifier que les exemples du depot restent coherents avec le format UID_AUTH v1.0.
+Avec la bibliotheque optionnelle `jsonschema` (`pip install jsonschema`), le
+script utilise `schema/uid_auth_schema.json` sans activer les controles de format
+des dates et URI. Sinon, il applique des controles minimaux en bibliotheque
+standard. Aucun de ces parcours ne recalcule une empreinte de fichier, ne
+verifie une signature ou n'authentifie l'autorite emettrice.
 
 ## Interoperabilite
 
-UID_AUTH coexiste avec les identifiants existants:
+Les integrations peuvent referencer les identifiants ou formats existants:
 
 - ISRC
 - ISWC
@@ -143,38 +161,39 @@ UID_AUTH coexiste avec les identifiants existants:
 - DDEX
 - EIDR
 
-Il complete ces standards avec:
+Le profil ajoute des declarations structurees:
 
-- un identifiant d'origine
-- une preuve d'integrite
+- un identifiant d'oeuvre declare
+- une empreinte de fichier declaree
 - des signaux de transparence IA/TDM
+
+Cette coexistence ne demontre pas un echange DDEX, une integration C2PA ou une
+conversion sans perte. Les regles de correspondance doivent etre specifiees et
+testees. Voir les [differences entre formats et versions](ARCHITECTURE.md).
 
 ## Architecture
 
 Les roles sont separes:
 
-- AURA fournit une preuve technique neutre d'origine, d'integrite et de verification. AURA peut verifier un manifeste, un hash ou une signature, sans imposer de registre, d'identifiant ou de profil de droits.
-- UID_AUTH fournit l'identifiant souverain de l'oeuvre ou de l'actif. C'est le role de ce depot: definir le format, le schema et les exemples de l'identifiant.
-- AUTHENTICA fournit un profil de droits et de reserve IA/TDM. Un manifeste AUTHENTICA peut contenir un `uid_auth` et peut etre reference ou verifie par AURA, mais il reste un profil applicatif distinct.
+- AURA definit des declarations signees et des preuves d'integrite des fichiers. Son identifiant obligatoire est `aura_uid` ; UID_AUTH et les identifiants institutionnels restent facultatifs dans son socle.
+- UID_AUTH definit le format d'un identifiant d'oeuvre declare et les metadonnees publiees ici.
+- AUTHENTICA AI Rights publie un profil JSON-LD distinct, dont le schema exige `uid_auth`. Un document conforme a ce profil n'est pas automatiquement un manifeste AURA signe.
 
-UID_AUTH peut donc etre utilise dans un manifeste AURA ou AUTHENTICA, sans dependance obligatoire entre les trois couches.
+Un identifiant UID_AUTH peut etre porte dans une extension AURA, sans dependance
+obligatoire du socle AURA a ce format. Le chemin d'extension et son sens doivent
+etre documentes par l'integration ; le verificateur AURA ne les certifie pas.
 
-Exemple de combinaison:
+Les objets identifies restent distincts:
 
-```json
-{
-  "uid_auth": "FR-2025-AUTH-MUS-000001",
-  "aura_id": "AURA-LOCAL-2026-000001-TEST",
-  "asset_hash": "..."
-}
-```
+| Element | Portee |
+| --- | --- |
+| `uid_auth` | Identifiant declare d'une oeuvre dans ce profil |
+| `aura_uid` | Identifiant obligatoire d'une declaration AURA 1.0/1.1 |
+| `asset.hash` | Empreinte des octets du fichier dans un manifeste AURA |
+| Signature AURA | Lien entre la declaration signee et une cle publique |
 
-Dans ce modele:
-
-- `uid_auth` identifie l'oeuvre
-- `aura_id` identifie la preuve AURA
-- `asset_hash` verifie l'integrite du fichier
-- la signature AURA verifie l'integrite du manifeste
+Le champ AURA `aura_id` est optionnel et ne remplace pas `aura_uid`. Une
+signature valide ne demontre pas la veracite des informations declarees.
 
 ## Ce Que UID_AUTH Ne Fait Pas
 
