@@ -1,17 +1,22 @@
 # UID_AUTH
 
-Open standard for creative work identification, origin declaration and traceability.
+Open format for creative work identification and declarations.
 
-UID_AUTH defines a sovereign, verifiable and interoperable identifier for creative works. It provides a minimal layer for linking a work to an origin declaration, timestamp, integrity hash and machine-readable rights signals.
+UID_AUTH defines an identifier format with accompanying metadata: declared
+origin, declared date, digest and machine-readable rights signals. The schema
+checks structure; the identifier alone does not certify origin, the declarant's
+identity or file integrity.
+
+[Documentation en francais](README.md) · [U.S. profile](README.US.md)
 
 > UID_AUTH identifies and structures a declaration. It does not decide legal ownership, infringement or liability.
 
 ## Purpose
 
-UID_AUTH provides three technical guarantees:
+UID_AUTH structures three kinds of information:
 
-- declarative proof of origin
-- cryptographic integrity through `sha256`
+- an origin declaration
+- a declared `sha256` digest, to compare separately with asset bytes
 - AI and TDM opt-out transparency signals
 
 The standard can be used by:
@@ -47,11 +52,19 @@ Segments:
 | `CATEGORY` | Creative category, e.g. `MUS`, `VID`, `IMG`, `TXT` |
 | `SEQUENCE` | Six-digit numeric sequence |
 
-UID_AUTH does not replace ISRC, ISWC, UPC, EAN, DDEX or EIDR. It adds an identification, origin and integrity layer.
+UID_AUTH does not replace ISRC, ISWC, UPC, EAN or EIDR identifiers, or DDEX
+exchange formats. Identifier shape does not establish global uniqueness:
+implementations must separately organize sequence allocation and collision
+prevention. The schema checks segment shape, not actual country-code or
+category allocation.
 
 ## JSON Manifest
 
 Minimal example:
+
+The examples are fictional. The `e3b0c442...b855` digest below and in the three
+example files is SHA-256 of an empty byte sequence, not evidence of an audio
+file's integrity. No audio asset or signature accompanies these examples.
 
 ```json
 {
@@ -108,14 +121,14 @@ The official JSON Schema is available at:
 schema/uid_auth_schema.json
 ```
 
-It checks:
+It imposes structural constraints on:
 
 - `uid_auth` format
 - declared origin: `human`, `ai`, `hybrid`
-- ISO 8601 timestamp
-- issuing authority
+- the declared `issued_at` date field
+- declared issuer fields
 - AI/TDM rights
-- `sha256` hash
+- the `sha256` algorithm and hexadecimal digest shape
 
 ## Local Validation
 
@@ -131,11 +144,14 @@ or:
 python3 scripts/validate_examples.py
 ```
 
-This does not replace a full JSON Schema validator. It keeps repository examples aligned with UID_AUTH v1.0.
+With the optional `jsonschema` library (`pip install jsonschema`), the script
+uses `schema/uid_auth_schema.json` without enabling date and URI format checks.
+Otherwise it uses minimal standard-library checks. Neither path recomputes an
+asset digest, verifies a signature or authenticates issuer authority.
 
 ## Interoperability
 
-UID_AUTH coexists with existing identifiers:
+Integrations may reference existing identifiers or formats:
 
 - ISRC
 - ISWC
@@ -143,38 +159,39 @@ UID_AUTH coexists with existing identifiers:
 - DDEX
 - EIDR
 
-It complements them with:
+The profile adds structured declarations:
 
-- an origin identifier
-- integrity proof
+- a declared work identifier
+- a declared asset digest
 - AI/TDM transparency signals
+
+Coexistence does not establish a DDEX exchange, C2PA integration or lossless
+conversion. Mappings need specified rules and tests. See the
+[format boundaries and versions](ARCHITECTURE.md).
 
 ## Architecture
 
 The roles are separate:
 
-- AURA provides neutral technical proof of origin, integrity and verification. AURA can verify a manifest, hash or signature without imposing a registry, identifier or rights profile.
-- UID_AUTH provides the sovereign identifier for the work or asset. This repository defines that identifier's format, schema and examples.
-- AUTHENTICA provides an AI/TDM rights and reservation profile. An AUTHENTICA manifest may contain a `uid_auth` and may be referenced or verified by AURA, but it remains a distinct application profile.
+- AURA defines signed declarations and exact-byte asset-integrity evidence. Its required identifier is `aura_uid`; UID_AUTH and institutional identifiers remain optional in its core.
+- UID_AUTH defines the declared work identifier format and metadata published here.
+- AUTHENTICA AI Rights publishes a separate JSON-LD profile whose schema requires `uid_auth`. A document conforming to that profile is not automatically a signed AURA manifest.
 
-UID_AUTH can therefore be used inside an AURA or AUTHENTICA manifest, without mandatory dependency between the three layers.
+An AURA extension can carry a UID_AUTH identifier without making it mandatory
+in the AURA core. The integration must document its extension path and meaning;
+the AURA verifier does not certify those semantics.
 
-Combination example:
+Keep the identified objects distinct:
 
-```json
-{
-  "uid_auth": "FR-2025-AUTH-MUS-000001",
-  "aura_id": "AURA-LOCAL-2026-000001-TEST",
-  "asset_hash": "..."
-}
-```
+| Element | Scope |
+| --- | --- |
+| `uid_auth` | Declared work identifier in this profile |
+| `aura_uid` | Required identifier of an AURA 1.0/1.1 declaration |
+| `asset.hash` | Digest of the asset bytes in an AURA manifest |
+| AURA signature | Binding between the signed declaration and a public key |
 
-In this model:
-
-- `uid_auth` identifies the work
-- `aura_id` identifies the AURA proof
-- `asset_hash` verifies file integrity
-- the AURA signature verifies manifest integrity
+The AURA `aura_id` field is optional and does not replace `aura_uid`. A valid
+signature does not establish the truth of the declared information.
 
 ## Non-Goals
 
