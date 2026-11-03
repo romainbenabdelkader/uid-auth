@@ -37,7 +37,7 @@ and [AI Rights schema](https://github.com/romainbenabdelkader/authentica-ai-righ
 The table lists selected differences, not a complete conversion contract.
 
 Neither schema requires an AURA signature or the full AURA manifest envelope.
-AURA-VERIFIER v1.2.1 does not accept these standalone documents as AURA evidence.
+AURA-VERIFIER v1.2.2 does not accept these standalone documents as AURA evidence.
 A separately specified integration can carry declarations in a signed AURA
 manifest, but its signature does not validate the domain-specific semantics.
 Any mapping needs versioned field rules and tests. Never silently substitute
@@ -60,14 +60,14 @@ permission, a licence or absence of rights.
 | Repository | Role |
 | --- | --- |
 | [AURA-STANDARD](https://github.com/romainbenabdelkader/AURA-STANDARD) | Open specification; archived release v1.2.1, manifest schemas 1.0/1.1 |
-| [AURA-VERIFIER](https://github.com/romainbenabdelkader/AURA-VERIFIER) | Published reference verifier v1.2.1 |
+| [AURA-VERIFIER](https://github.com/romainbenabdelkader/AURA-VERIFIER) | Published reference verifier v1.2.2 |
 | [aura-core](https://github.com/romainbenabdelkader/aura-core) | Historical Python v0.1 educational primitives |
 | [aura-cli](https://github.com/romainbenabdelkader/aura-cli) | Historical Python v0.1 demonstration |
 | [uid-auth](https://github.com/romainbenabdelkader/uid-auth) | Separate identifier format and metadata schema |
 | [authentica-ai-rights](https://github.com/romainbenabdelkader/authentica-ai-rights) | Separate draft AI rights and origin profile |
 
 The Python demonstrations are not current-format signing SDKs. Start a current
-AURA integration with the [v1.2.1 integrator guide](https://github.com/romainbenabdelkader/AURA-VERIFIER/blob/e1fa13c4fb253c2e07a99538524b869028bb62b4/INTEGRATORS.md).
+AURA integration with the [v1.2.2 integrator guide](https://github.com/romainbenabdelkader/AURA-VERIFIER/blob/08d7c70404bab16e2e3b09bb9e59aefaf6fa5391/INTEGRATORS.md).
 Archives: [AURA-STANDARD v1.2.1](https://doi.org/10.5281/zenodo.22071523)
-and [AURA-VERIFIER v1.2.1](https://doi.org/10.5281/zenodo.23898686).
+and [AURA-VERIFIER v1.2.2](https://doi.org/10.5281/zenodo.23917182).
 These references do not certify either application profile or its implementations.
